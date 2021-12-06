@@ -6,9 +6,17 @@ export interface Props {
   children: ReactNode | Array<ReactNode>
 }
 
+
+function createClasses(className?: string | undefined) {
+  const defaultClassName = 'w-full h-full flex flex-row justify-center items-center'
+  return className ? `${defaultClassName} ${className}` : defaultClassName
+}
+
+
+
 function Container ({children, type = 'button'}: Props) {
   return (
-    <button type={type}>{children}</button>
+    <section className={createClasses()}>{children}</section>
   )
 }
 
