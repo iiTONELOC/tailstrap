@@ -13,7 +13,7 @@ TailStrap aims to fill the gap in a reuseable component library for TailwindCSS 
 
 ## Requirements
 
-TailStrap aims to be as light as possible and is designed to be integrated into your existing React + TailwindCSS projects
+TailStrap aims to be as light as possible and is designed to be integrated into your existing React + TailwindCSS projects  
 Make sure you have React.js and TailwindCSS installed prior to installation
 
 ## Installation
