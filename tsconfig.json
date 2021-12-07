@@ -25,9 +25,11 @@
   },
   "include": [
     "./src"
-, "types"  ],
+, "src/types", "utils", "types"  ],
   "exclude": [
       "node_modules",
-      "lib"
+      "lib",
+      "storybook-static",
+
   ]
 }

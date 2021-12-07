@@ -4,3 +4,5 @@ lib/
 .history
 .DS_Store
 storybook-static/
+.env
+build-storybook*

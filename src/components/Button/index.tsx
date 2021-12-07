@@ -22,18 +22,40 @@ export default function Button({
   type = 'button',
   override = false,
   variant = 'default',
-}: ButtonProps) {
+}: ButtonProps):
+  JSX.Element {
   const defaultClass = `rounded-lg ${buttonVariants(variant)}  focus:outline-none focus:shadow-outline ${buttonSizes(size)}`
-  console.log(` PROPS`, props)
   if (props) {
-    // check the property keys, if href is one of them render <a> tag instead of button
-    // default should open in new tab and no refferrer for security reasons
-  }
+    for (const key in props) {
+      if (key === 'href') {
+        return (
+          <a
+            type={type}
+            // @ts-ignore -if statement above catches desired property
+            href={props?.href}
+            target='_blank'
+            rel='noopener noreferrer'
+            className={createClasses({
+              nativeArgs: defaultClass,
+              userArgs: className,
+              override
+            })}
+            {...props}
+          >
+            {children}
+          </a>
+        );
+      }
+    }
+  };
   return (
-
     <button
       type={type}
-      className={createClasses({ nativeArgs: defaultClass, userArgs: className, override })}
+      className={createClasses({
+        nativeArgs: defaultClass,
+        userArgs: className,
+        override
+      })}
       {...props}
     >
       {children}
