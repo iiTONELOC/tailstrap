@@ -6,11 +6,13 @@
 
 The `<Page />` component is a `<section>` HTML element at its core and is way to expand the element to fit the viewport while centering your content.
 
-    Default Classes:
+### **_`className`_**: string
 
-    flex flex-col items-center justify-center min-h-screen
+Default Classes: `flex flex-col items-center justify-center min-h-screen`
 
-## Overriding default behavior
+### **_`override`_**: boolean
+
+Default: false
 
 All component styles can be overridden by one of two ways.
 

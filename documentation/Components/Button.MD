@@ -8,11 +8,11 @@ The `<Button />` component is a `<button>` HTML element at its core and provides
 Like all of our components `<Button>` can be built on top of or stripped down and fully customized.
 
 Default Classes:  
- The default classes depend on props such as `size` and `variant`.
+ The default classes depend on props such as _`size`_ and _`variant`_.
 
 # Component Props
 
-### **_size_**: string
+### **_`size`_**: string
 
 | Prop    | Tailwind Class Equivalent | CSS Properties       |
 | ------- | ------------------------- | -------------------- |
@@ -45,7 +45,7 @@ Default Classes:
 | default | text-lg                   | font-size: 1.125rem  |
 |         |                           | font-size: 1.75rem   |
 
-### **_variant_**: string
+### **_`variant`_**: string
 
 | Prop    | Tailwind Class Equivalents | CSS Properties                                              |
 | ------- | -------------------------- | ----------------------------------------------------------- |
@@ -71,16 +71,25 @@ Default Classes:
 |         | hover:bg-blue-700          | background-color: rgba(29, 78, 216, var(--tw-bg-opacity))   |
 |         | text-white                 | color: rgba(255, 255, 255, var(--tw-text-opacity))          |
 
-### **_override_**: boolean
+### **_`className`_**: string
 
-Default is false
+CSS/TailwindCSS classes
+
+### **_`type`_**: string
+
+default: button
+button | submit | reset
+
+### **_`override`_**: boolean
+
+Default: false  
 If you need to override the default styles:
 
 ```js
 <Button override={true} />
 ```
 
-### **_props_**: object
+### **_`props`_**: object
 
 Takes any valid React or HTML prop and passes to the base element
 
@@ -107,7 +116,7 @@ _example:_ _submit button with click handler_
 
 All component styles can be overridden by one of two ways.
 
-Default behavior is to concatenate the class names passed to the `className` property with the existing classes. To override the default behavior pass the `override={true}` property when calling the component:
+Default behavior is to concatenate the class names passed to the _`className`_ property with the existing classes. To override the default behavior pass the _`override={true}`_ property when calling the component:
 
 1. Add to base styles
 
@@ -119,7 +128,7 @@ Default behavior is to concatenate the class names passed to the `className` pro
 
 2. Override completely  
    _Note:_ _when overriding default classes the size prop is removed as well_  
-   _className_ is required or the component defaults
+   _`className`_ is required or the component defaults
 
 ```js
 <Button className="p-3 text-4xl w-14 bg-600" override={true} />

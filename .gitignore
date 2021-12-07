@@ -3,3 +3,4 @@ lib/
 .vscode/
 .history
 .DS_Store
+storybook-static/
