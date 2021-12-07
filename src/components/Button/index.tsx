@@ -24,8 +24,13 @@ export default function Button({
   variant = 'default',
 }: ButtonProps) {
   const defaultClass = `rounded-lg ${buttonVariants(variant)}  focus:outline-none focus:shadow-outline ${buttonSizes(size)}`
-
+  console.log(` PROPS`, props)
+  if (props) {
+    // check the property keys, if href is one of them render <a> tag instead of button
+    // default should open in new tab and no refferrer for security reasons
+  }
   return (
+
     <button
       type={type}
       className={createClasses({ nativeArgs: defaultClass, userArgs: className, override })}
