@@ -1,14 +1,39 @@
-import {ReactNode} from 'react';
+import { ReactNode } from 'react';
+import { createClasses } from '../../utils';
+import { Sizes, Variants } from '../../types';
+import { buttonVariants } from '../../utils/Button';
+import { buttonSizes } from '../../utils/Button';
 
-export interface Props {
-  type?: 'button' | 'submit' | 'reset'
-  children: ReactNode | Array<ReactNode>
-}
+export interface ButtonProps {
+  size?: Sizes
+  props?: object;
+  variant?: Variants;
+  override?: boolean;
+  className?: string;
+  type?: 'button' | 'submit' | 'reset';
+  children: ReactNode | Array<ReactNode>;
+};
 
-function Button ({children, type = 'button'}: Props) {
+export default function Button({
+  props,
+  children,
+  className,
+  size = 'lg',
+  type = 'button',
+  override = false,
+  variant = 'default',
+}: ButtonProps) {
+  const defaultClass = `rounded-lg ${buttonVariants(variant)}  focus:outline-none focus:shadow-outline ${buttonSizes(size)}`
+
   return (
-    <button type={type}>{children}</button>
-  )
-}
+    <button
+      type={type}
+      className={createClasses({ nativeArgs: defaultClass, userArgs: className, override })}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+};
 
-export default Button
+
