@@ -1,4 +1,4 @@
-import '../src/tailwind.css'
+import '../src/styles/index.css'
 export const parameters = {
   layout: "centered",
   actions: { argTypesRegex: "^on[A-Z].*" },
