@@ -1,1 +1,1 @@
-export { default as createClasses } from './createClasses';
+export { default as generateClassNames } from './generateClassNames';

@@ -1,4 +1,4 @@
-type Variants =
+type ColorVariants =
     | 'success'
     | 'danger'
     | 'warning'
@@ -14,4 +14,13 @@ type Variants =
     | 'dark-outline'
     //  'default outline is just `outline`'
     | 'outline';
-export type { Variants };
+
+type PageVariants =
+    | 'center'
+    | 'start'
+    | 'center-start'
+    | 'start-center'
+    | undefined;
+
+type BoxVariants = 'row' | 'col' | 'inline' | 'block';
+export type { ColorVariants, BoxVariants, PageVariants };

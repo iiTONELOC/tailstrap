@@ -1,4 +1,4 @@
-import { Sizes } from "../../types";
+import { Sizes } from "../../../types";
 
 export default function buttonSizes(size: Sizes) {
     switch (size) {

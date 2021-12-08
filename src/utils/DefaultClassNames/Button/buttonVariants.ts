@@ -1,4 +1,4 @@
-import { Variants } from "../../types";
+import { ColorVariants as Variants } from "../../../types";
 
 export default function buttonVariants(variant: Variants) {
     switch (variant) {

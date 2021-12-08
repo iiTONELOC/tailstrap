@@ -1,13 +1,13 @@
 import { ReactNode } from 'react';
-import { createClasses } from '../../utils';
-import { Sizes, Variants } from '../../types';
-import { buttonVariants } from '../../utils/Button';
-import { buttonSizes } from '../../utils/Button';
+import { generateClassNames } from '../../utils';
+import { Sizes, ColorVariants } from '../../types';
+import { ButtonVariantClassNames, ButtonSizeClassNames } from '../../utils/DefaultClassNames';
+
 
 export interface ButtonProps {
   size?: Sizes
   props?: object;
-  variant?: Variants;
+  variant?: ColorVariants;
   override?: boolean;
   className?: string;
   type?: 'button' | 'submit' | 'reset';
@@ -24,7 +24,8 @@ export default function Button({
   variant = 'default',
 }: ButtonProps):
   JSX.Element {
-  const defaultClass = `rounded-lg ${buttonVariants(variant)}  focus:outline-none focus:shadow-outline ${buttonSizes(size)}`
+  const defaultClass = `rounded-lg ${ButtonVariantClassNames(variant)} 
+  focus:outline-none focus:shadow-outline ${ButtonSizeClassNames(size)}`
   if (props) {
     for (const key in props) {
       if (key === 'href') {
@@ -35,7 +36,7 @@ export default function Button({
             href={props?.href}
             target='_blank'
             rel='noopener noreferrer'
-            className={createClasses({
+            className={generateClassNames({
               nativeArgs: defaultClass,
               userArgs: className,
               override
@@ -51,7 +52,7 @@ export default function Button({
   return (
     <button
       type={type}
-      className={createClasses({
+      className={generateClassNames({
         nativeArgs: defaultClass,
         userArgs: className,
         override
