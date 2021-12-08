@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { PageVariants } from '../../types';
-import { generateClassNames } from '../../utils';
+import { generateClassNames, GenerateTag } from '../../utils';
 import { PageClassNames } from '../../utils/DefaultClassNames';
 
 export interface Props {
@@ -20,7 +20,9 @@ export default function Page({
 }: Props): JSX.Element {
   const defaultClass = `flex flex-col ${PageClassNames(variant)} h-screen w-screen`;
   return (
-    <section
+    <GenerateTag
+      // @ts-ignore
+      tag={props?.as || 'main'}
       className={
         generateClassNames({
           nativeArgs: defaultClass,
@@ -31,6 +33,6 @@ export default function Page({
       {...props}
     >
       {children}
-    </section>
+    </GenerateTag>
   );
 };

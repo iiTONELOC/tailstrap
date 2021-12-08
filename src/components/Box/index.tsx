@@ -1,10 +1,7 @@
 import { ReactNode } from 'react';
 import { BoxVariants } from '../../types';
-import { generateClassNames } from '../../utils';
+import { generateClassNames, GenerateTag } from '../../utils';
 import { BoxClassNames } from '../../utils/DefaultClassNames';
-// import { createClasses } from '../../utils';
-
-
 
 export interface BoxProps {
     props?: object;
@@ -14,7 +11,6 @@ export interface BoxProps {
     variant?: BoxVariants;
     children: ReactNode | Array<ReactNode>;
 };
-
 
 export default function Box({
     props,
@@ -27,7 +23,9 @@ export default function Box({
     // get default based on type, then pass into our GenerateClasses function
     const defaultClassNames = `${BoxClassNames(variant)}`;
     return (
-        <div
+        <GenerateTag
+            // @ts-ignore
+            tag={props?.as || 'div'}
             className={generateClassNames({
                 nativeArgs: defaultClassNames,
                 userArgs: className,
@@ -36,8 +34,8 @@ export default function Box({
             {...props}
         >
             {children}
-        </div>
-    )
+        </GenerateTag>
+    );
 };
 
 

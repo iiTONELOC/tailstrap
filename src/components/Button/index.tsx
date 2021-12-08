@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { generateClassNames } from '../../utils';
+import { generateClassNames, GenerateTag, renderAnchor } from '../../utils';
 import { Sizes, ColorVariants } from '../../types';
 import { ButtonVariantClassNames, ButtonSizeClassNames } from '../../utils/DefaultClassNames';
 
@@ -26,41 +26,20 @@ export default function Button({
   JSX.Element {
   const defaultClass = `rounded-lg ${ButtonVariantClassNames(variant)} 
   focus:outline-none focus:shadow-outline ${ButtonSizeClassNames(size)}`
-  if (props) {
-    for (const key in props) {
-      if (key === 'href') {
-        return (
-          <a
-            type={type}
-            // @ts-ignore -if statement above catches desired property
-            href={props?.href}
-            target='_blank'
-            rel='noopener noreferrer'
-            className={generateClassNames({
-              nativeArgs: defaultClass,
-              userArgs: className,
-              override
-            })}
-            {...props}
-          >
-            {children}
-          </a>
-        );
-      }
-    }
-  };
+  const renAnchor = renderAnchor(props);
   return (
-    <button
-      type={type}
+    <GenerateTag
+      tag={renAnchor ? 'a' : 'button'}
       className={generateClassNames({
         nativeArgs: defaultClass,
         userArgs: className,
         override
       })}
-      {...props}
+      // @ts-ignore
+      props={{ type: renAnchor ? undefined : type, ...props }}
     >
       {children}
-    </button>
+    </GenerateTag>
   );
 };
 
