@@ -8,7 +8,7 @@ The `<Page />` component is a `<section>` HTML element at its core and is way to
 
 ### **_`className`_**: string
 
-Default Classes: `flex flex-col items-center justify-center min-h-screen`
+Default Classes: `flex flex-col items-center justify-center min-h-screen w-screen`
 
 ### **_`override`_**: boolean
 
