@@ -11,7 +11,6 @@ export interface Props {
   children: ReactNode | Array<ReactNode>;
 };
 
-
 export default function Page({
   props,
   variant,

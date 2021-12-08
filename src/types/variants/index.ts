@@ -22,5 +22,15 @@ type PageVariants =
     | 'start-center'
     | undefined;
 
-type BoxVariants = 'row' | 'col' | 'inline' | 'block';
+type BoxVariants =
+    | 'row'
+    | 'col'
+    | 'grid'
+    | 'flex'
+    | 'block'
+    | 'inline'
+    | 'inline-flex'
+    | 'inline-grid'
+    | 'inline-block'
+    | undefined;
 export type { ColorVariants, BoxVariants, PageVariants };
