@@ -123,9 +123,6 @@ Takes any valid React or HTML prop and passes to the base element
     onSubmit: (e) => {
       handleSubmit(e);
     },
-    onMouseEnter: () => {
-      console.log(`Mouse Entered!`);
-    },
   }}
 >
   Submit
