@@ -116,15 +116,7 @@ Takes any valid React or HTML prop and passes to the base element
 ### _`example component: submit button with click handler`_
 
 ```js
-<Button
-  variant="success"
-  size="2xl"
-  props={{
-    onSubmit: (e) => {
-      handleSubmit(e);
-    },
-  }}
->
+<Button variant="success" size="2xl">
   Submit
 </Button>
 ```
