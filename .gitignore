@@ -3,6 +3,6 @@ lib/
 .vscode/
 .history
 .DS_Store
-storybook-static/
+# storybook-static/
 .env
 build-storybook*
