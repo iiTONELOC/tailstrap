@@ -16,6 +16,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "test": "jest --passWithNoTests",
+    "build-local": "npm run build && node tailstrap.config.js",
     "release": "NODE_ENV=production npm run build && npm publish"
   },
   "peerDependencies": {
@@ -40,6 +41,7 @@
     "autoprefixer": "^10.4.0",
     "babel-loader": "^8.2.2",
     "chromatic": "^6.2.0",
+    "fs-extra": "^10.0.0",
     "jest": "^27.2.2",
     "postcss": "^8.4.4",
     "react": "^17.0.2",

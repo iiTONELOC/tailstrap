@@ -6,3 +6,4 @@ lib/
 storybook-static/
 .env
 build-storybook*
+testing_grounds/
