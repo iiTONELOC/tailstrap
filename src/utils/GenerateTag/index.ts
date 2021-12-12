@@ -7,8 +7,11 @@ interface TagProps {
     children: ReactNode | Array<ReactNode>;
     className?: string;
     props?: any;
+    key?: string;
+    wrap?: boolean;
 };
 export default function GenerateTag({
+    key,
     tag,
     props,
     children,
@@ -23,6 +26,7 @@ export default function GenerateTag({
         attributes.href = href;
         attributes.target = '_blank';
         attributes.rel = 'noopener noreferrer';
+        attributes.key = key;
     }
     return React.createElement(tag, { ...attributes }, children);
 };
