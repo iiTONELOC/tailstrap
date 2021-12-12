@@ -5,7 +5,7 @@ export default function boxVariants(variant: Variants) {
         case 'row':
             return 'flex flex-wrap flex-row';
         case 'col':
-            return 'flex flex-wrap flex-col'
+            return 'flex flex-col'
         default:
             return `${variant}`
     };

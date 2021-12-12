@@ -6,16 +6,18 @@ import { ButtonVariantClassNames, ButtonSizeClassNames } from '../../utils/Defau
 
 export interface ButtonProps {
   size?: Sizes
+  label?: string
   props?: object;
   variant?: ColorVariants;
   override?: boolean;
   className?: string;
   type?: 'button' | 'submit' | 'reset';
-  children: ReactNode | Array<ReactNode>;
+  children?: ReactNode | Array<ReactNode>;
 };
 
 export default function Button({
   props,
+  label,
   children,
   className,
   size = 'lg',
@@ -38,7 +40,7 @@ export default function Button({
       // @ts-ignore
       props={{ type: renAnchor ? undefined : type, ...props }}
     >
-      {children}
+      {label ? label : children}
     </GenerateTag>
   );
 };
