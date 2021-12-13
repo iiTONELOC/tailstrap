@@ -7,6 +7,6 @@ export default function boxVariants(variant: Variants) {
         case 'col':
             return 'flex flex-col'
         default:
-            return `${variant}`
+            return variant
     };
 };
