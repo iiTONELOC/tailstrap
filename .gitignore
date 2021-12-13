@@ -6,3 +6,4 @@ lib/
 sorybook-static/
 .env
 build-storybook*
+testing_grounds/
