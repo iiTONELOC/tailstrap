@@ -19,7 +19,6 @@ export default function GenerateTag({
         className,
         ...props,
     };
-    console.log(props);
     const href = props?.href;
     if (href !== undefined && href !== '#' && href.trim() !== '') {
         attributes.href = href;

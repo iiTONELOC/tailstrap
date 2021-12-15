@@ -5,8 +5,6 @@ import { generateClassNames, GenerateTag } from '../../../utils';
 export interface ItemProps extends DefaultProps {
     name?: string;
     active?: string;
-    textColor?: string;
-    hoverColor?: string;
     overrideOpener?: boolean;
 };
 
@@ -18,13 +16,13 @@ export default function Item({
     override,
     className,
     overrideOpener,
-    textColor = 'black',
-    hoverColor = 'blue-500',
 }: ItemProps): JSX.Element {
     const [isMounted, setMounted] = useState(false);
     const [activeClasses, setActiveClasses] = useState('');
-    const defaultActiveLinkClassNames = `text-${hoverColor} underline underline-offset`;
-    const defaultClassNames = `p-1 font-medium text-${textColor} hover:text-${hoverColor} ${activeClasses} cursor-pointer`;
+    const defaultAnchorClassNames = `p-1 font-medium ${activeClasses}`;
+    const liDefaultClassNames = ` hover:text-blue-500 text-black cursor-pointer`;
+    const defaultActiveLinkClassNames = `text-blue-500 underline underline-offset`;
+
 
     useEffect(() => {
         setMounted(true);
@@ -34,7 +32,7 @@ export default function Item({
     useEffect(() => {
         if (window?.location?.href === props?.href && !override) {
             setActiveClasses(active ? active : defaultActiveLinkClassNames);
-        } else if (!props.href && window?.location?.pathname === props?.name && !override) {
+        } else if (window?.location?.pathname === props?.name && !override || window?.location?.pathname === props?.href && !override) {
             setActiveClasses(active ? active : defaultActiveLinkClassNames);
         } else {
             setActiveClasses('');
@@ -42,13 +40,18 @@ export default function Item({
     }, [isMounted]);
 
     return (
-        <li>
+        <li
+            className={generateClassNames({
+                nativeArgs: liDefaultClassNames,
+                override
+            })}
+        >
             {
                 name || typeof children == 'string' ? (
                     <GenerateTag
                         tag="a"
                         className={generateClassNames({
-                            nativeArgs: defaultClassNames,
+                            nativeArgs: defaultAnchorClassNames,
                             userArgs: className,
                             override
                         })}

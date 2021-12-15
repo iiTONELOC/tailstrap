@@ -5,8 +5,6 @@ import { generateClassNames } from '../../../utils';
 
 
 export interface BarProps extends DefaultProps {
-    bgColor?: string;
-
     spacing?: 'string'
     variant?: 'left' | 'right' | 'center';
     navItems?: Array<ReactNode> | Array<ItemProps>;
@@ -29,13 +27,12 @@ export default function Bar({
     props,
     spacing,
     variant,
-    bgColor,
     children,
     override,
     className,
     navItems,
 }: BarProps): JSX.Element {
-    const defaultNavBarClasses = `p-1 flex flex-row ${handleVariant(variant)} bg-${bgColor} w-full`;
+    const defaultNavBarClasses = `p-1 flex flex-wrap flex-row ${handleVariant(variant)}  w-full`;
 
     return (
         <nav className={generateClassNames({
@@ -45,7 +42,7 @@ export default function Bar({
         })}
             {...props}
         >
-            <ul className={spacing ? spacing : 'gap-2'}>
+            <ul className={`flex flex-wrap flex-row ${spacing ? spacing : 'gap-2'}`}>
                 {!children && navItems ? navItems.map((item, index) => (
                     <Item
                         // @ts-ignore
