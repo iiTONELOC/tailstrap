@@ -1,15 +1,11 @@
 import { ReactNode } from 'react';
 import { BoxVariants } from '../../types';
+import { DefaultProps } from '../../types/defaultProps';
 import { generateClassNames, GenerateTag } from '../../utils';
 import { BoxClassNames } from '../../utils/DefaultClassNames';
 
-export interface BoxProps {
-    props?: object;
-    // flex?: boolean;
-    override?: boolean;
-    className?: string;
+export interface BoxProps extends DefaultProps {
     variant?: BoxVariants;
-    children: ReactNode | Array<ReactNode>;
 };
 
 export default function Box({
