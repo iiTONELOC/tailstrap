@@ -18,8 +18,8 @@ export default function DropButton({
     label = 'Click Me',
     variant = 'default'
 }: DropButtonProps): JSX.Element | null {
-    const [isOpen, setIsOpen] = useState(false);
     const [buttonID, setButtonID] = useState(0);
+    const [isOpen, setIsOpen] = useState(false);
     const [dropWidth, setDropWidth] = useState(0);
     const [isMounted, setMounted] = useState(false);
     useEffect(() => {

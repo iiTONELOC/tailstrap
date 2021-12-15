@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import { BoxVariants } from '../../types';
 import { DefaultProps } from '../../types/defaultProps';
 import { generateClassNames, GenerateTag } from '../../utils';

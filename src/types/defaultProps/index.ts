@@ -1,8 +1,9 @@
 import { ReactNode } from 'react';
 export interface DefaultProps {
-    props?: object | any;
+    variant?: string;
     override?: boolean;
     className?: string;
-    variant?: string;
+    props?: object | any;
+    key?: string | number;
     children?: ReactNode | Array<ReactNode>;
 };
