@@ -88,7 +88,8 @@ export default function DropButton({
                                 {/* @ts-ignore */}
                                 {dropItems?.length > 0 && dropItems.map((item, index) => (
                                     item.href ? (
-                                        <a
+                                        <li><a
+                                            title={item.name}
                                             href={item.href}
                                             target='_blank'
                                             rel='noopener noreferrer'
@@ -102,6 +103,7 @@ export default function DropButton({
                                                 listClassName={item.listClassName}
                                             />
                                         </a>
+                                        </li>
                                     ) : <DropItem
                                         key={item.name || index}
                                         name={item.name}
