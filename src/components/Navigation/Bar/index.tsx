@@ -26,7 +26,7 @@ export default function Bar({
     const [mobile, setMobile] = useState(false);
     const [isMounted, setMounted] = useState(false);
     const [show, setShow] = useState(!overrideResponsiveNav ? !checkMobile() : true);
-    const defaultNavBarClasses = `bg-red-500 p-1 flex flex-wrap flex-row ${handleVariant(variant)} w-full`;
+    const defaultNavBarClasses = `p-1 flex flex-wrap flex-row ${handleVariant(variant)} w-full`;
 
     function handleClick(e: React.MouseEvent): void {
         e.preventDefault();
@@ -83,7 +83,8 @@ export default function Bar({
                     <MenuIcon onClick={handleClick} />
                 </span>
             )}
-            {show && <ul className={`${!overrideResponsiveNav ? `flex flex-wrap flex-col md:flex md:flex-wrap md:flex-row` :
+            {show && <ul className={`${!overrideResponsiveNav ?
+                `flex flex-wrap flex-col md:flex md:flex-wrap md:flex-row` :
                 `flex flex-wrap flex-row`} ${spacing ? spacing : 'gap-2'}`}>
                 {!children && navItems ? navItems.map((item, index) => (
                     <Item
