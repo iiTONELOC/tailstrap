@@ -1,16 +1,42 @@
 # Button
 
-**_A reusable button component_**
+**_A reusable button component_**  
+_[Back](../TailStrap.MD)_
 
 ## Default Behavior
 
-The `<Button />` component is a `<button>` HTML element at its core and provides multiple defaults for quick prototyping.  
-Like all of our components `<Button>` can be built on top of or stripped down and fully customized.
+The `<Button/>` component is a `<button>` HTML element at its core and provides multiple defaults for quick prototyping.  
+Like all of our components `<Button/>` can be built on top of or stripped down and fully customized.
 
 Default Classes:  
  The default classes depend on props such as _`size`_ and _`variant`_.
 
-## Component Props
+## Import
+
+```js
+import { Button } from "tailstrap";
+```
+
+## Component Properties
+
+### **_`props`_**: object
+
+Takes any valid React or HTML prop and passes to the base element  
+ _Note:_ _when passing href, the `<button>` element becomes an HTML `<a>` tag_  
+ _`target` and `rel` attributes default to `'_blank'` and `'noopener noreferrer'` but can be overridden by passing your own_
+
+### **_`type`_**: string
+
+default: button
+button | submit | reset
+
+### **_`label`_**: string
+
+Text to be rendered if not passing children
+
+```js
+<Button label="Click me, I am a button!" />
+```
 
 ### **_`size`_**: string
 
@@ -91,12 +117,9 @@ Default Classes:
 
 ### **_`className`_**: string
 
-CSS/TailwindCSS classes
-
-### **_`type`_**: string
-
-default: button
-button | submit | reset
+_**Adds to existing styles unless overridden**_  
+ Any valid TailwindCSS class  
+In Most Cases the default classes will have to be overridden for custom buttons
 
 ### **_`override`_**: boolean
 
@@ -107,13 +130,7 @@ If you need to override the default styles:
 <Button override={true} />
 ```
 
-### **_`props`_**: object
-
-Takes any valid React or HTML prop and passes to the base element  
- _Note:_ _when passing href, the `<button>` element becomes an HTML `<a>` tag_  
- _`target` and `rel` attributes default to `'_blank'` and `'noopener noreferrer'` but can be overridden by passing your own_
-
-### _`example component: submit button with click handler`_
+## _`example component: submit button with click handler`_
 
 ```js
 <Button
@@ -122,9 +139,6 @@ Takes any valid React or HTML prop and passes to the base element
   props={{
     onSubmit: (e) => {
       handleSubmit(e);
-    },
-    onMouseEnter: () => {
-      console.log(`Mouse Entered!`);
     },
   }}
 >
@@ -136,21 +150,27 @@ Takes any valid React or HTML prop and passes to the base element
 
 All component styles can be overridden by one of two ways.
 
-Default behavior is to concatenate the class names passed to the _`className`_ property with the existing classes. To override the default behavior pass the _`override={true}`_ property when calling the component:
+Default behavior is to concatenate the class names passed to the _`className`_ property with the existing classes.  
+To override the default behavior pass the _`override={true}`_ property when calling the component:
 
 1. Add to base styles
 
-    ```js
-    <Button variant="dark" size="2xl" className="w-24">
-      Click Me I am a Button!
-    </Button>
-    ```
+   ```js
+   <Button variant="dark" size="2xl" className="w-24">
+     Click Me I am a Button!
+   </Button>
+   ```
 
 2. Override completely
 
    _Note:_ _when overriding default classes the size prop is removed as well_  
-   _`className`_ is required or the component defaults
+    _`className`_ is required or the component defaults
 
-    ```js
-    <Button className="p-3 text-4xl w-14 bg-600" override={true} />
-    ```
+   ```js
+   <Button
+     override={true}
+     className="bg-gray-700 p-2 rounded-lg text-gray-300 hover:bg-gray-500"
+   >
+     Click Me
+   </Button>
+   ```

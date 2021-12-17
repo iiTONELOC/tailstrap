@@ -1,6 +1,7 @@
 # Page Component
 
-**_A layout component for pages_**
+**_A layout component for pages_**  
+_[Back](../TailStrap.MD)_
 
 ## Default Behavior
 
