@@ -79,7 +79,7 @@ export default function Bar({
             {...props}
         >
             {mobile && (
-                <span className='w-12 self-center place-self-start bg-blue-300'>
+                <span className='w-12 self-center place-self-start hover:bg-blue-300 hover:border hover:border-gray-700 hover:rounded-lg text-slate-400 hover:text-black'>
                     <MenuIcon onClick={handleClick} />
                 </span>
             )}
