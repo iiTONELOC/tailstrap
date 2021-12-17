@@ -3,7 +3,9 @@ lib/
 .vscode/
 .history
 .DS_Store
-storybook-static/
+
 .env
 build-storybook*
 testing_grounds/
+src/
+documentation/
