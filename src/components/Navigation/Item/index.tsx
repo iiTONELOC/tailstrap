@@ -56,7 +56,7 @@ export default function Item({
                             override
                         })}
                         override={overrideOpener}
-                        props={...props}
+                        props={props}
                     >
                         {!children ? name : children}
                     </GenerateTag>
