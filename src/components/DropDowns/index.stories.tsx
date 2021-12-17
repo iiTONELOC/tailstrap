@@ -1,97 +1,104 @@
 import { Meta, Story } from "@storybook/react";
-import Button, { ButtonProps as Props } from "./";
+import DropButton, { DropButtonProps as Props } from "./DropButton";
 
 export default {
-  title: "Components/User Interface/Button",
-  component: Button,
+  title: "Components/User Interface/Drop Button",
+  component: DropButton,
 } as Meta;
-
-const Template: Story<Props> = (args) => <Button {...args} />;
+const dropData = [
+  { name: 'Item 1', },
+  { name: 'Visit Google', href: 'https://google.com' },
+  { name: 'Item 3', },
+]
+const Template: Story<Props> = (args) => <DropButton {...args} />;
 
 export const DefaultButton = Template.bind({});
-DefaultButton.args = { children: "Default" };
+DefaultButton.args = {
+  label: 'Drop Button',
+  dropItems: dropData
+};
 
 export const SuccessButton = Template.bind({});
 SuccessButton.args = {
-  children: "success",
-  size: "lg",
+  label: 'Drop Button',
+  dropItems: dropData,
   variant: "success",
 };
 
 export const DangerButton = Template.bind({});
 DangerButton.args = {
-  children: "danger",
-  size: "lg",
+  label: 'Drop Button',
+  dropItems: dropData,
   variant: "danger",
 };
 
 export const WarningButton = Template.bind({});
 WarningButton.args = {
-  children: "warning",
-  size: "lg",
+  label: 'Drop Button',
+  dropItems: dropData,
   variant: "warning",
 };
 
 export const InfoButton = Template.bind({});
 InfoButton.args = {
-  children: "info",
-  size: "lg",
+  label: 'Drop Button',
+  dropItems: dropData,
   variant: "info",
 };
 
 export const LightButton = Template.bind({});
 LightButton.args = {
-  children: "light",
-  size: "lg",
+  label: 'Drop Button',
+  dropItems: dropData,
   variant: "light",
 };
 
 export const DarkButton = Template.bind({});
 DarkButton.args = {
-  children: "dark",
-  size: "lg",
+  label: 'Drop Button',
+  dropItems: dropData,
   variant: "dark",
 };
 
 export const SuccessOutlineButton = Template.bind({});
 SuccessOutlineButton.args = {
-  children: "success-outline",
-  size: "lg",
+  label: 'Drop Button',
+  dropItems: dropData,
   variant: "success-outline",
 };
 
 export const DangerOutlineButton = Template.bind({});
 DangerOutlineButton.args = {
-  children: "danger-outline",
-  size: "lg",
+  label: 'Drop Button',
+  dropItems: dropData,
   variant: "danger-outline",
 };
 
 export const InfoOutlineButton = Template.bind({});
 InfoOutlineButton.args = {
-  children: "info-outline",
-  size: "lg",
+  label: 'Drop Button',
+  dropItems: dropData,
   variant: "info-outline",
 };
 
 export const LightOutlineButton = Template.bind({});
 LightOutlineButton.args = {
-  children: "light-outline",
-  size: "lg",
+  label: 'Drop Button',
+  dropItems: dropData,
   variant: "light-outline",
 };
 
 export const DarkOutlineButton = Template.bind({});
 DarkOutlineButton.args = {
-  children: "dark-outline",
-  size: "lg",
+  label: 'Drop Button',
+  dropItems: dropData,
   variant: "dark-outline",
 };
 
 export const OutlineButton = Template.bind({});
 OutlineButton.args = {
-  children: "outline",
-  size: "lg",
+  label: 'Drop Button',
+  dropItems: dropData,
   variant: "outline",
 };
 

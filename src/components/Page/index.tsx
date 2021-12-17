@@ -1,20 +1,38 @@
 import { ReactNode } from 'react';
-import { createClasses } from '../../utils';
+import { PageVariants } from '../../types';
+import { generateClassNames, GenerateTag } from '../../utils';
+import { PageClassNames } from '../../utils/DefaultClassNames';
 
 export interface Props {
   className?: string;
+  props?: object;
+  variant?: PageVariants;
   override?: boolean;
   children: ReactNode | Array<ReactNode>;
 };
 
-const defaultClass = 'flex flex-col items-center justify-center min-h-screen';
-
-function Page({ children, className, override = false }: Props) {
+export default function Page({
+  props,
+  variant,
+  children,
+  className,
+  override = false,
+}: Props): JSX.Element {
+  const defaultClass = `flex flex-col ${PageClassNames(variant)} h-screen w-screen`;
   return (
-    <section className={createClasses({ nativeArgs: defaultClass, userArgs: className, override })}>
+    <GenerateTag
+      // @ts-ignore
+      tag={props?.as || 'main'}
+      className={
+        generateClassNames({
+          nativeArgs: defaultClass,
+          userArgs: className,
+          override
+        })
+      }
+      {...props}
+    >
       {children}
-    </section>
+    </GenerateTag>
   );
 };
-
-export default Page;

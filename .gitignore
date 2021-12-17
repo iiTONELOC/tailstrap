@@ -1,6 +1,15 @@
-node_modules/
+
+.env
 lib/
 .vscode/
 .history
 .DS_Store
+.storybook
+node_modules/
+build-storybook*
 storybook-static/
+
+
+
+
+

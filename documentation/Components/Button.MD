@@ -47,29 +47,47 @@ Default Classes:
 
 ### **_`variant`_**: string
 
-| Prop    | Tailwind Class Equivalents | CSS Properties                                              |
-| ------- | -------------------------- | ----------------------------------------------------------- |
-| success | bg-green-500               | background-color: rgba(16, 185, 129, var(--tw-bg-opacity))  |
-|         | hover:bg-green-700         | background-color: rgba(4, 120, 87, var(--tw-bg-opacity))    |
-|         | text-white                 | color: rgba(255, 255, 255, var(--tw-text-opacity))          |
-| danger  | bg-red-600                 | background-color: rgba(220, 38, 38, var(--tw-bg-opacity))   |
-|         | hover:bg-red-700           | background-color: rgba(185, 28, 28, var(--tw-bg-opacity))   |
-|         | text-white                 | color: rgba(255, 255, 255, var(--tw-text-opacity))          |
-| warning | bg-yellow-500              | background-color: rgba(245, 158, 11, var(--tw-bg-opacity))  |
-|         | hover:bg-yellow-700        | background-color: rgba(180, 83, 9, var(--tw-bg-opacity))    |
-|         | text-black                 | color: rgba(0, 0, 0, var(--tw-text-opacity))                |
-| info    | bg-blue-400                | background-color: rgba(96, 165, 250, var(--tw-bg-opacity))  |
-|         | hover:bg-blue-500          | background-color: rgba(37, 99, 235, var(--tw-bg-opacity))   |
-|         | text-white                 | color: rgba(255, 255, 255, var(--tw-text-opacity))          |
-| light   | bg-gray-200                | background-color: rgba(229, 231, 235, var(--tw-bg-opacity)) |
-|         | hover:bg-gray-400          | background-color: rgba(156, 163, 175, var(--tw-bg-opacity)) |
-|         | text-black                 | color: rgba(0, 0, 0, var(--tw-text-opacity))                |
-| dark    | bg-gray-900                | background-color: rgba(17, 24, 39, var(--tw-bg-opacity))    |
-|         | bg-gray-700                | background-color: rgba(55, 65, 81, var(--tw-bg-opacity))    |
-|         | text-white                 | color: rgba(255, 255, 255, var(--tw-text-opacity))          |
-| default | "bg-blue-600               | background-color: rgba(37, 99, 235, var(--tw-bg-opacity))   |
-|         | hover:bg-blue-700          | background-color: rgba(29, 78, 216, var(--tw-bg-opacity))   |
-|         | text-white                 | color: rgba(255, 255, 255, var(--tw-text-opacity))          |
+| Prop            | Tailwind Class Equivalents              | CSS Properties                                              |
+| --------------- | --------------------------------------- | ----------------------------------------------------------- |
+| success         | bg-green-500                            | background-color: rgba(16, 185, 129, var(--tw-bg-opacity))  |
+|                 | hover:bg-green-700                      | background-color: rgba(4, 120, 87, var(--tw-bg-opacity))    |
+|                 | text-white                              | color: rgba(255, 255, 255, var(--tw-text-opacity))          |
+| danger          | bg-red-600                              | background-color: rgba(220, 38, 38, var(--tw-bg-opacity))   |
+|                 | hover:bg-red-700                        | background-color: rgba(185, 28, 28, var(--tw-bg-opacity))   |
+|                 | text-white                              | color: rgba(255, 255, 255, var(--tw-text-opacity))          |
+| warning         | bg-yellow-400                           | background-color: rgba(251, 191, 36, var(--tw-bg-opacity))  |
+|                 | hover:bg-yellow-500                     | background-color: rgba(245, 158, 11, var(--tw-bg-opacity))  |
+|                 | text-black                              | color: rgba(0, 0, 0, var(--tw-text-opacity))                |
+| info            | bg-blue-400                             | background-color: rgba(96, 165, 250, var(--tw-bg-opacity))  |
+|                 | hover:bg-blue-500                       | background-color: rgba(37, 99, 235, var(--tw-bg-opacity))   |
+|                 | text-white                              | color: rgba(255, 255, 255, var(--tw-text-opacity))          |
+| light           | bg-gray-200                             | background-color: rgba(229, 231, 235, var(--tw-bg-opacity)) |
+|                 | hover:bg-gray-400                       | background-color: rgba(156, 163, 175, var(--tw-bg-opacity)) |
+|                 | text-black                              | color: rgba(0, 0, 0, var(--tw-text-opacity))                |
+| dark            | bg-gray-900                             | background-color: rgba(17, 24, 39, var(--tw-bg-opacity))    |
+|                 | bg-gray-800                             | background-color: rgba(31, 41, 55, var(--tw-bg-opacity))    |
+|                 | text-white                              | color: rgba(255, 255, 255, var(--tw-text-opacity))          |
+| default         | "bg-blue-600                            | background-color: rgba(37, 99, 235, var(--tw-bg-opacity))   |
+|                 | hover:bg-blue-700                       | background-color: rgba(29, 78, 216, var(--tw-bg-opacity))   |
+|                 | text-white                              | color: rgba(255, 255, 255, var(--tw-text-opacity))          |
+| success-outline | border-2 border-green-500               |                                                             |
+|                 | hover:border-green-700 text-green-500   |                                                             |
+|                 | hover:text-white hover:bg-green-500     |                                                             |
+| danger-outline  | border-2 border-red-500                 |                                                             |
+|                 | hover:border-red-700 text-red-500       |                                                             |
+|                 | hover:text-white hover:bg-red-500       |                                                             |
+| warning-outline | border-2 border-yellow-400              |                                                             |
+|                 | hover:border-yellow-500 text-yellow-400 |                                                             |
+|                 | hover:text-white hover:bg-yellow-400    |                                                             |
+| info-outline    | border-2 border-blue-400                |                                                             |
+|                 | hover:border-blue-500 text-blue-400     |                                                             |
+|                 | hover:text-white hover:bg-blue-400      |                                                             |
+| light-outline   | border-2 border-gray-200                |                                                             |
+|                 | hover:border-gray-400 text-gray-100     |                                                             |
+|                 | hover:text-black hover:bg-gray-400      |                                                             |
+| dark-outline    | border-2 border-gray-900                |                                                             |
+|                 | hover:border-gray-700 text-gray-900     |                                                             |
+|                 | hover:text-white hover:bg-gray-900      |                                                             |
 
 ### **_`className`_**: string
 
@@ -91,9 +109,11 @@ If you need to override the default styles:
 
 ### **_`props`_**: object
 
-Takes any valid React or HTML prop and passes to the base element
+Takes any valid React or HTML prop and passes to the base element  
+ _Note:_ _when passing href, the `<button>` element becomes an HTML `<a>` tag_  
+ _`target` and `rel` attributes default to `'_blank'` and `'noopener noreferrer'` but can be overridden by passing your own_
 
-_example:_ _submit button with click handler_
+### _`example component: submit button with click handler`_
 
 ```js
 <Button
