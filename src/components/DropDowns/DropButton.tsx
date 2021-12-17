@@ -18,8 +18,8 @@ export default function DropButton({
     label = 'Click Me',
     variant = 'default'
 }: DropButtonProps): JSX.Element | null {
-    const [isOpen, setIsOpen] = useState(false);
     const [buttonID, setButtonID] = useState(0);
+    const [isOpen, setIsOpen] = useState(false);
     const [dropWidth, setDropWidth] = useState(0);
     const [isMounted, setMounted] = useState(false);
     useEffect(() => {
@@ -88,7 +88,8 @@ export default function DropButton({
                                 {/* @ts-ignore */}
                                 {dropItems?.length > 0 && dropItems.map((item, index) => (
                                     item.href ? (
-                                        <a
+                                        <li><a
+                                            title={item.name}
                                             href={item.href}
                                             target='_blank'
                                             rel='noopener noreferrer'
@@ -102,6 +103,7 @@ export default function DropButton({
                                                 listClassName={item.listClassName}
                                             />
                                         </a>
+                                        </li>
                                     ) : <DropItem
                                         key={item.name || index}
                                         name={item.name}

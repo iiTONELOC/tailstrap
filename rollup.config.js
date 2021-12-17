@@ -35,7 +35,7 @@ export default {
             // extract: true,
             minimize: true,
             inject: {
-                insertAt: "bottom",
+                insertAt: "top",
             }
         })
     ],

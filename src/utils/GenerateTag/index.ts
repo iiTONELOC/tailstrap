@@ -1,13 +1,9 @@
 import React from 'react';
-import { ReactNode } from 'react';
 import { HTML_Tags } from "../../types";
+import { DefaultProps } from '../../types/defaultProps';
 
-interface TagProps {
+interface TagProps extends DefaultProps {
     tag: HTML_Tags;
-    children: ReactNode | Array<ReactNode>;
-    className?: string;
-    props?: any;
-    key?: string;
     wrap?: boolean;
 };
 export default function GenerateTag({
@@ -15,7 +11,9 @@ export default function GenerateTag({
     tag,
     props,
     children,
+    override,
     className,
+
 }: TagProps): JSX.Element {
     const attributes = {
         className,
@@ -24,13 +22,14 @@ export default function GenerateTag({
     const href = props?.href;
     if (href !== undefined && href !== '#' && href.trim() !== '') {
         attributes.href = href;
-        attributes.target = '_blank';
+        if (!override) attributes.target = '_blank';
         attributes.rel = 'noopener noreferrer';
         attributes.key = key;
     }
     return React.createElement(tag, { ...attributes }, children);
 };
 // returns true false on if to render elm as <a></a>
+
 export function renderAnchor(props: any): boolean {
     if (props?.href) {
         if (props?.href?.trim() == '') {

@@ -1,19 +1,17 @@
-import { ReactNode } from 'react';
-import { generateClassNames, GenerateTag, renderAnchor } from '../../utils';
 import { Sizes, ColorVariants } from '../../types';
+import { DefaultProps } from '../../types/defaultProps';
+import { generateClassNames, GenerateTag, renderAnchor } from '../../utils';
 import { ButtonVariantClassNames, ButtonSizeClassNames } from '../../utils/DefaultClassNames';
 
 
-export interface ButtonProps {
-  size?: Sizes
-  label?: string
-  props?: object;
+
+export interface ButtonProps extends DefaultProps {
+  size?: Sizes;
+  label?: string;
   variant?: ColorVariants;
-  override?: boolean;
-  className?: string;
   type?: 'button' | 'submit' | 'reset';
-  children?: ReactNode | Array<ReactNode>;
-};
+}
+
 
 export default function Button({
   props,
