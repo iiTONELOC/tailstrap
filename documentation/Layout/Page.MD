@@ -4,7 +4,7 @@
 
 ## Default Behavior
 
-The `<Page />` component is a `<main>` HTML element by default and is used when you need to expand the element to fit the viewport while centering the content.
+The `<Page />` component is a `<main>` HTML element by default and is used when you need to expand the element to fit the viewport while centering the content. An ideal root component for your application.
 
 Default Classes: `flex flex-col items-center justify-center min-h-screen w-screen`
 
