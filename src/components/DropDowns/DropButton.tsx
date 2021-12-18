@@ -12,6 +12,7 @@ export interface DropButtonProps extends ButtonProps {
     dropItemOverride?: boolean;
     dropContainerClassName?: string;
     dropContainerOverride?: boolean;
+    dropElWidth?: "default" | "dynamic" | "auto" | number;
 };
 
 
@@ -31,6 +32,7 @@ export default function DropButton({
     variant = 'default',
     dropContainerOverride,
     dropContainerClassName,
+    dropElWidth = "default",
 }: DropButtonProps): JSX.Element | null {
     const [buttonID,] = useState(Date.now())
     const [isOpen, setIsOpen] = useState(false);
@@ -58,10 +60,24 @@ export default function DropButton({
 
     const defaultListClasses = "bg-gray-300 absolute mt-2 rounded-md shadow-lg gap-2 z-50";
     const defaultContainerClasses = "flex flex-col items-center " + defaultListClasses + "p-1 hover:shadow-xl";
+    function handleWidth(dropElWidth: DropButtonProps['dropElWidth']): object {
+        if (typeof dropElWidth === 'number') {
+            return { width: dropElWidth };
+        } else {
+            switch (dropElWidth) {
+                case "dynamic":
+                    return { minWidth: dropWidth };
+                case "auto":
+                    return { minWidth: '' };
+                default:
+                    return { width: dropWidth };
+            };
+        };
+    };
 
     return (
-        <Box variant="col" className="static items-center">
-            <span>
+        <Box variant="col" className=" items-center">
+            <span className="static">
                 <Button
                     size={size}
                     type={type}
@@ -79,11 +95,11 @@ export default function DropButton({
                     children ? (
                         <div
                             className={generateClassNames({
+                                override: dropContainerOverride,
                                 nativeArgs: defaultContainerClasses,
-                                userArgs: dropContainerClassName,
-                                override: dropContainerOverride
+                                userArgs: "absolute " + dropContainerClassName,
                             })}
-                            style={{ width: dropWidth }}
+                            style={{ ...handleWidth(dropElWidth) }}
                         >
                             {children}
                         </div>
@@ -91,20 +107,21 @@ export default function DropButton({
                         : (
                             <ul
                                 className={generateClassNames({
+                                    override: dropListOverride,
                                     nativeArgs: defaultListClasses,
-                                    userArgs: dropListClassName,
-                                    override: dropListOverride
+                                    userArgs: "absolute " + dropListClassName,
                                 })}
-                                style={{ width: dropWidth }}
+                                style={{ ...handleWidth(dropElWidth) }}
                             >
                                 {/* @ts-ignore */}
                                 {dropItems?.length > 0 && dropItems.map((item, index) => (
                                     <DropItem
-                                        key={item.name || index}
-                                        name={item?.name || undefined}
-                                        child={item.child}
+                                        props={item?.props}
+                                        child={item?.child}
+                                        key={item?.name || index}
                                         override={dropItemOverride}
                                         className={dropItemClassName}
+                                        name={item?.name || undefined}
                                     />
                                 ))}
                             </ul>

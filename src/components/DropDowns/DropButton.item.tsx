@@ -4,7 +4,6 @@ import { generateClassNames } from "../../utils";
 
 export interface DropButtonItemProps {
     name?: string;
-    href?: string;
     props?: object;
     override?: boolean;
     className?: string;
