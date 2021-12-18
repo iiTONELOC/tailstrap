@@ -21,6 +21,7 @@ Make sure you have React.js and TailwindCSS installed prior to installation
 ## Table of Contents
 
 - [Button](./Components/Button.MD)
+- [DropButton](./Components/DropButton.MD)
 - [Page](./Layout/Page.MD)
 
 ## License
