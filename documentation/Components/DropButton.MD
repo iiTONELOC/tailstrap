@@ -1,23 +1,28 @@
-# Button
+# DropButton
 
-**_A reusable button component_**  
+**_A reusable button component with a dropdown_**  
 _[Back](../TailStrap.MD)_
 
 ## Default Behavior
 
-The `<Button/>` component is a `<button>` HTML element at its core and provides multiple defaults for quick prototyping.  
-Like all of our components `<Button/>` can be built on top of or stripped down and fully customized.
+The make up of the `<DropButton />` component changes slightly upon its use but it is a TailStrap `<Button/>` component at its core.  
+The default mark-up is an HTML `<button>` element that drops an unordered list `<ul>`; with children the `<DropButton/>` drops a `<div>`. The dropped elements are the same width as the `<Button />` by default.
+`<DropButton/>` provides the [`<Button/>` component's defaults for quick prototyping.](./Button.MD)  
+Like all of our components, `<DropButton/>` can be built on top of or stripped down and fully customized.
 
-Default Classes:  
- The default classes depend on props such as _`size`_ and _`variant`_.
+Default Drop Classes:  
+ For the `<ul>` the default classes are : `bg-gray-300 absolute mt-2 rounded-md shadow-lg gap-2 z-50`  
+ When passing children the classes for the `<div>` are: `flex flex-col items-center bg-gray-300 absolute mt-2 rounded-md shadow-lg gap-2 z-50 p-1 hover:shadow-xl`
 
 ## Import
 
 ```js
-import { Button } from "tailstrap";
+import { DropButton } from "tailstrap";
 ```
 
 ## Component Properties
+
+_NOTE: Some `<Button/>` properties apply to `<DropButton/>`, the below list is the all inclusive list of the component's properties_
 
 ### **_`props`_**: object
 
@@ -32,10 +37,15 @@ button | submit | reset
 
 ### **_`label`_**: string
 
-Text to be rendered if not passing children
+Text to be rendered.  
+default: `Click Me`
+
+_\* **Note**: If Children are present, they get passed to the drop `<div>` and not to the `<Button/>` component_
 
 ```js
-<Button label="Click me, I am a button!" />
+<DropButton label="Click me, I am a button!">
+  You Clicked the Button!
+</DropButton>
 ```
 
 ### **_`size`_**: string
@@ -115,7 +125,54 @@ Text to be rendered if not passing children
 |                 | hover:border-gray-700 text-gray-900     |
 |                 | hover:text-white hover:bg-gray-900      |
 
+### **_`dropItems`_**: Array of Objects
+
+The dropItem prop can take all the the props for the `<DropButtonItem/>` Component. Which is an internal component used by `<DropButton/>` that you have full control over and is returned when you pass an array to the dropItems property.
+
+- name: string
+  - Text to be displayed in the unordered list
+- props: object
+- override: boolean
+  - can be used to override individual item styles
+- className: string
+  - valid TailwindCSS classes
+- child: any valid HTML or React element
+  - can be used when you need to render a component
+
+_**example usage :**_
+
+```js
+import { Page, Button, DropButton } from "tailstrap";
+
+const dropItemData = [
+  { name: "Item 1" },
+  { name: "Visit Google", props: { href: "https://google.com" } },
+  {
+    child: (
+      <Button
+        label="Click me"
+        props={{ onClick: () => alert("You Clicked the button!") }}
+      />
+    ),
+  },
+];
+export default function MyComponent() {
+  return (
+    <Page variant="center" className="bg-gray-500">
+      <DropButton
+        label="Drop Button"
+        dropItems={dropItemData}
+        variant="success"
+      />
+    </Page>
+  );
+}
+```
+
 ### **_`className`_**: string
+
+_**IMPORTANT**:_  
+_Applies to `<Button/>` Only_
 
 _**Adds to existing styles unless overridden**_  
  Any valid TailwindCSS class  
@@ -123,27 +180,14 @@ In Most Cases the default classes will have to be overridden for custom buttons
 
 ### **_`override`_**: boolean
 
+_**IMPORTANT**:_  
+_Applies to `<Button/>` Only_
+
 Default: false  
 If you need to override the default styles:
 
 ```js
-<Button override={true} />
-```
-
-## _`example component: submit button with click handler`_
-
-```js
-<Button
-  variant="success"
-  size="2xl"
-  props={{
-    onSubmit: (e) => {
-      handleSubmit(e);
-    },
-  }}
->
-  Submit
-</Button>
+<DropButton override={true} />
 ```
 
 ## Overriding default behavior
@@ -153,24 +197,87 @@ All component styles can be overridden by one of two ways.
 Default behavior is to concatenate the class names passed to the _`className`_ property with the existing classes.  
 To override the default behavior pass the _`override={true}`_ property when calling the component:
 
-1. Add to base styles
+1. Add to base styles:  
+   same example from above except we want a larger button and the drop items centered
 
    ```js
-   <Button variant="dark" size="2xl" className="w-24">
-     Click Me I am a Button!
-   </Button>
+   export default function MyComponent() {
+     return (
+       <Page variant="center" className="bg-gray-500">
+         <DropButton
+           className="w-96"
+           variant="success"
+           label="Drop Button"
+           dropItems={dropItemData}
+           dropListClassName="text-center"
+         />
+       </Page>
+     );
+   }
    ```
+
+   There are additional props that allow certain customization without overriding the component completely.
+
+   ### **_`dropListClassName`_**: string
+
+   _NOTE: Use when utilizing the dropItems property_
+
+   Applies styles to the `<ul>`.
+
+   ### **_`dropItemClassName`_**: string
+
+   _NOTE: Use when utilizing the dropItems property_
+
+   Applies styles to all the `<li>` in the drop.
+
+   ### **_`dropContainerClassName`_**: string
+
+   _NOTE: Use when passing children_
+
+   Applies styles to the `<div>`.
 
 2. Override completely
 
    _Note:_ _when overriding default classes the size prop is removed as well_  
     _`className`_ is required or the component defaults
 
+   ### **_`dropListOverride`_**: boolean
+
+   _NOTE: Use when utilizing the dropItems property_
+
+   ### **_`dropItemOverride`_**: boolean
+
+   _NOTE: Use when utilizing the dropItems property_
+
+   Removes base styles from all the `<li>` in the drop.
+
+   ### **_`dropContainerOverride`_**: boolean
+
+   _NOTE: Use when passing children_
+
+   Removes base styles from the `<div>`.
+
    ```js
-   <Button
-     override={true}
-     className="bg-gray-700 p-2 rounded-lg text-gray-300 hover:bg-gray-500"
-   >
-     Click Me
-   </Button>
+   import { Page, DropButton, Button } from "../../lib";
+
+   const dropData = [
+     { name: "Item 1" },
+     { name: "Visit Google", props: { href: "https://google.com" } },
+     { child: <Button label="Click me" size="sm" /> },
+   ];
+   export default function TestPage() {
+     return (
+       <Page variant="center">
+         <DropButton
+           label="Drop Button"
+           dropItems={dropData}
+           dropListOverride={true}
+           dropItemOverride={true}
+           variant="danger-outline"
+           dropListClassName="bg-gray-700 mt-6 rounded-lg p-2 text-center"
+           dropItemClassName="text-gray-300 hover:text-emerald-500"
+         />
+       </Page>
+     );
+   }
    ```
