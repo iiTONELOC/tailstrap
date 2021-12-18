@@ -1,11 +1,19 @@
 import Box from "../Box";
 import { useEffect, useState } from "react";
 import Button, { ButtonProps } from "../Button";
-import DropItem, { DropItemProps } from "./DropButton.item";
+import DropItem, { DropButtonItemProps } from "./DropButton.item";
+import { generateClassNames } from "../../utils";
 
-export interface DropButtonProps extends ButtonProps, DropItemProps {
-    dropItems?: Array<DropItemProps>;
+export interface DropButtonProps extends ButtonProps {
+    dropItems?: Array<DropButtonItemProps>;
+    dropListClassName?: string;
+    dropListOverride?: boolean;
+    dropItemClassName?: string;
+    dropItemOverride?: boolean;
+    dropContainerClassName?: string;
+    dropContainerOverride?: boolean;
 };
+
 
 export default function DropButton({
     props,
@@ -15,10 +23,16 @@ export default function DropButton({
     size = 'lg',
     type = 'button',
     override = false,
+    dropItemOverride,
+    dropListOverride,
+    dropListClassName,
+    dropItemClassName,
     label = 'Click Me',
-    variant = 'default'
+    variant = 'default',
+    dropContainerOverride,
+    dropContainerClassName,
 }: DropButtonProps): JSX.Element | null {
-    const [buttonID, setButtonID] = useState(0);
+    const [buttonID,] = useState(Date.now())
     const [isOpen, setIsOpen] = useState(false);
     const [dropWidth, setDropWidth] = useState(0);
     const [isMounted, setMounted] = useState(false);
@@ -27,12 +41,6 @@ export default function DropButton({
         return () => { setMounted(false) };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    useEffect(() => {
-        if (isMounted && buttonID == 0) {
-            setButtonID(Date.now());
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isMounted]);
     useEffect(() => {
         function setButtonWidth() {
             const thisButton = document?.getElementById(`__tailStrap_button-${buttonID}`);
@@ -46,7 +54,10 @@ export default function DropButton({
         return () => { window.removeEventListener('resize', setButtonWidth) };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [buttonID, isOpen]);
-    if (!isMounted || buttonID == 0) return null;
+    if (!isMounted || !buttonID) return null;
+
+    const defaultListClasses = "bg-gray-300 absolute mt-2 rounded-md shadow-lg gap-2 z-50";
+    const defaultContainerClasses = "flex flex-col items-center " + defaultListClasses + "p-1 hover:shadow-xl";
 
     return (
         <Box variant="col" className="static items-center">
@@ -64,53 +75,36 @@ export default function DropButton({
                         ...props
                     }}
                 />
-                {
-                    /* 
-                    FIXME: 
-                    Use Styled Components to handle the size, using the style attribute for now.
-                    */
-                }
                 {isOpen && dropWidth !== 0 && (
                     children ? (
                         <div
-                            className="flex flex-col items-center bg-gray-300 hover:bg-gray-200
-                            absolute mt-2 rounded-md shadow-lg gap-2 z-50 p-1 hover:shadow-xl"
-                            style={{ minWidth: dropWidth }}
+                            className={generateClassNames({
+                                nativeArgs: defaultContainerClasses,
+                                userArgs: dropContainerClassName,
+                                override: dropContainerOverride
+                            })}
+                            style={{ width: dropWidth }}
                         >
                             {children}
                         </div>
                     )
                         : (
                             <ul
-                                className="bg-gray-300 absolute mt-2 rounded-md shadow-lg gap-2 z-50"
-                                style={{ minWidth: dropWidth }}
+                                className={generateClassNames({
+                                    nativeArgs: defaultListClasses,
+                                    userArgs: dropListClassName,
+                                    override: dropListOverride
+                                })}
+                                style={{ width: dropWidth }}
                             >
                                 {/* @ts-ignore */}
                                 {dropItems?.length > 0 && dropItems.map((item, index) => (
-                                    item.href ? (
-                                        <li><a
-                                            title={item.name}
-                                            href={item.href}
-                                            target='_blank'
-                                            rel='noopener noreferrer'
-                                            key={item.name || index}
-                                            {...item.listProps}
-                                        >
-                                            <DropItem
-                                                name={item.name}
-                                                child={item.child}
-                                                listOverride={item.listOverride}
-                                                listClassName={item.listClassName}
-                                            />
-                                        </a>
-                                        </li>
-                                    ) : <DropItem
+                                    <DropItem
                                         key={item.name || index}
-                                        name={item.name}
+                                        name={item?.name || undefined}
                                         child={item.child}
-                                        listProps={item.listProps}
-                                        listOverride={item.listOverride}
-                                        listClassName={item.listClassName}
+                                        override={dropItemOverride}
+                                        className={dropItemClassName}
                                     />
                                 ))}
                             </ul>
