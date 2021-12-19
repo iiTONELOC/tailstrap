@@ -82,6 +82,14 @@ function myComponent() {
 
   _Note:_ _use the properties of the [Nav.Item](./Nav.Item.MD) component when generating the Array_
 
+  - name: string
+  - children: any HTML or React Elements
+  - props: object
+  - active: string
+  - override: boolean
+  - className: string
+  - overrideOpener: boolean
+
   ```js
   const navItemData = [
     {
@@ -92,7 +100,7 @@ function myComponent() {
       props: { href: "https://google.com" },
     },
     {
-      name: "Item 3",
+      children: <Button label="Item 3" />,
     },
   ];
 
