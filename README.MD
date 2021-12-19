@@ -42,7 +42,7 @@ All component styles can be overridden by one of two ways.
 
 ## Documentation
 
-[Go To Documentation](./documentation/TailStrap.md)
+[Go To Documentation](./documentation/TailStrap.MD)
 
 ## License
 
