@@ -21,7 +21,7 @@ export default function Item({
     const [activeClasses, setActiveClasses] = useState('');
     const defaultAnchorClassNames = `p-1 font-medium ${activeClasses}`;
     const liDefaultClassNames = ` hover:text-blue-500 text-black cursor-pointer`;
-    const defaultActiveLinkClassNames = `text-blue-500 underline underline-offset z-10 hover:z-50`;
+    const defaultActiveLinkClassNames = `text-blue-500 underline underline-offset-8`;
 
 
     useEffect(() => {
