@@ -5,6 +5,7 @@ import { BadgeVariantClassNames, BadgeSizeClassNames } from '../../utils/Default
 export interface BadgeProps extends DefaultProps {
     size?: Sizes;
     label?: string;
+    rounded?: string;
     background?: string;
     variant?: ColorVariants;
 }
@@ -13,16 +14,17 @@ export default function Badge({
     props,
     label,
     variant,
+    rounded,
     children,
     className,
     background,
     override = false,
 }: BadgeProps): JSX.Element {
-    const defaultClass = `rounded-full ${variant ? BadgeVariantClassNames(variant) : background} 
-    ${BadgeSizeClassNames(size)} place-items-center`;
+    const defaultClass = `flex flex-row justify-center items-center ${rounded ? rounded : "rounded-full"} text-center max-w-max ${BadgeSizeClassNames(size)} 
+    ${variant ? BadgeVariantClassNames(variant) : background} `;
     return (
         <GenerateTag
-            tag={renderAnchor(props) ? 'a' : 'span'}
+            tag={renderAnchor(props) ? 'a' : props.as ? props.as : 'span'}
             className={generateClassNames({
                 nativeArgs: defaultClass,
                 userArgs: className,

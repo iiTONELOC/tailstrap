@@ -14,13 +14,12 @@ export default function buttonVariants(variant: Variants) {
             return "bg-gray-200 hover:bg-gray-400 text-black";
         case "dark":
             return "bg-gray-900 hover:bg-gray-800 text-white";
-        // outlines no bg-color, border color is the same as the text color
         case "success-outline":
             return "border-2 border-green-500 hover:border-green-700 text-green-500 hover:text-white  hover:bg-green-500";
         case "danger-outline":
             return "border-2 border-red-600 hover:border-red-700 text-red-500 hover:text-white hover:bg-red-500";
         case "warning-outline":
-            return "border-2 border-yellow-400 hover:border-yellow-500 text-yellow-400 hover:text-white hover:bg-yellow-400";
+            return "border-2 border-yellow-400 hover:border-yellow-500 text-yellow-400 hover:text-black hover:bg-yellow-400";
         case "info-outline":
             return "border-2 border-blue-400 hover:border-blue-500 text-blue-400 hover:text-white hover:bg-blue-400";
         case "light-outline":
