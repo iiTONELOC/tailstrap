@@ -1,12 +1,12 @@
-# Button
+# Label
 
-**_A reusable button component_**  
+**_A reusable component for pills_**  
 _[Back](../TailStrap.MD)_
 
 ## Default Behavior
 
-The `<Button/>` component is a `<button>` HTML element at its core and provides multiple defaults for quick prototyping.  
-Like all of our components `<Button/>` can be built on top of or stripped down and fully customized.
+The `<Label/>` component is a `<span>` HTML element at its core and provides multiple defaults for quick prototyping.  
+Like all of our components `<Label/>` can be built on top of or stripped down and fully customized.
 
 Default Classes:  
  The default classes depend on props such as _`size`_ and _`variant`_.
@@ -14,7 +14,7 @@ Default Classes:
 ## Import
 
 ```js
-import { Button } from "tailstrap";
+import { Label } from "tailstrap";
 ```
 
 ## Component Properties
@@ -22,20 +22,23 @@ import { Button } from "tailstrap";
 ### **_`props`_**: object
 
 Takes any valid React or HTML prop and passes to the base element  
- _Note:_ _when passing href, the `<button>` element becomes an HTML `<a>` tag_  
+ _Note:_ _when passing href, the `<span>` element becomes an HTML `<a>` tag_  
  _`target` and `rel` attributes default to `'_blank'` and `'noopener noreferrer'` but can be overridden by passing your own_
 
-### **_`type`_**: string
+- **_`as`_**: string
 
-default: button
-button | submit | reset
+  Any valid HTML element
+
+  ```js
+  <Label props={{ as: "div" }} />
+  ```
 
 ### **_`label`_**: string
 
 Text to be rendered if not passing children
 
 ```js
-<Button label="Click me, I am a button!" />
+<Label label="This is a label" />
 ```
 
 ### **_`rounded`_**: string
@@ -46,7 +49,7 @@ Utilizes tailwindcss rounded classes:
 [Tailwind CSS Docs](https://tailwindcss.com/docs/border-radius#rounded-corners)
 
 ```js
-<Button label="Click me, I am a button!" rounded="rounded-xl" />
+<Label label="Can't click me, I am a label!" rounded="rounded-xl" />
 ```
 
 ### **_`background`_**: string
@@ -58,7 +61,7 @@ Utilizes tailwindcss background color properties:
 [Tailwind CSS Docs](https://tailwindcss.com/docs/background-color)
 
 ```js
-<Button label="Click me, I am a button!" background="bg-teal-500" />
+<Label label="I'm a label!" background="bg-teal-500" />
 ```
 
 ### **_`size`_**: string
@@ -150,23 +153,48 @@ Default: false
 If you need to override the default styles:
 
 ```js
-<Button override={true} />
+<Label override={true} />
 ```
 
-## _`example component: submit button with click handler`_
+## _`example`_
 
 ```js
-<Button
-  variant="success"
-  size="2xl"
-  props={{
-    onSubmit: (e) => {
-      handleSubmit(e);
-    },
-  }}
->
-  Submit
-</Button>
+import { Page, Label, Box } from "tailstrap";
+export default function MyComponent() {
+  const sizes = [
+    "xs",
+    "sm",
+    "md",
+    "lg",
+    "xl",
+    "2xl",
+    "3xl",
+    "4xl",
+    "5xl",
+    "6xl",
+    "7xl",
+    "8xl",
+    "9xl",
+  ];
+  return (
+    <Page variant="center" className="bg-gray-500 overflow-y-auto">
+      <Box
+        variant="row"
+        className="gap-8 bg-black w-full h-full justify-center 
+            items-center p-5"
+      >
+        {sizes.map((size) => (
+          <Label
+            key="size"
+            size={size}
+            variant="danger"
+            label={size + " Badge"}
+          />
+        ))}
+      </Box>
+    </Page>
+  );
+}
 ```
 
 ## Overriding default behavior
@@ -179,9 +207,9 @@ To override the default behavior pass the _`override={true}`_ property when call
 1. Add to base styles
 
    ```js
-   <Button variant="dark" size="2xl" className="w-24">
-     Click Me I am a Button!
-   </Button>
+   <Label variant="dark" size="2xl">
+     I am a label!
+   </Label>
    ```
 
 2. Override completely
@@ -190,10 +218,10 @@ To override the default behavior pass the _`override={true}`_ property when call
     _`className`_ is required or the component defaults
 
    ```js
-   <Button
+   <Label
      override={true}
      className="bg-gray-700 p-2 rounded-lg text-gray-300 hover:bg-gray-500"
    >
-     Click Me
-   </Button>
+     I am a label
+   </Label>
    ```
