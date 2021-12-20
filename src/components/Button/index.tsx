@@ -33,7 +33,7 @@ export default function Button({
   const renAnchor = renderAnchor(props);
   return (
     <GenerateTag
-      tag={renAnchor ? 'a' : props.as ? props.as : 'button'}
+      tag={renAnchor ? 'a' : props?.as ? props.as : 'button'}
       className={generateClassNames({
         nativeArgs: defaultClass,
         userArgs: className,
