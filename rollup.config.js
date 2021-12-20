@@ -32,10 +32,9 @@ export default {
                 path: "./postcss.config.js"
             },
             extensions: [".css"],
-            // extract: true,
             minimize: true,
             inject: {
-                insertAt: "bottom",
+                insertAt: "top",
             }
         })
     ],

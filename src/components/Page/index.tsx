@@ -18,7 +18,7 @@ export default function Page({
   className,
   override = false,
 }: Props): JSX.Element {
-  const defaultClass = `flex flex-col ${PageClassNames(variant)} h-screen w-screen`;
+  const defaultClass = `flex flex-col ${PageClassNames(variant)} min-h-screen w-screen`;
   return (
     <GenerateTag
       // @ts-ignore

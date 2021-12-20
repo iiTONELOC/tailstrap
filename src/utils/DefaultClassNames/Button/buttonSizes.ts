@@ -21,14 +21,14 @@ export default function buttonSizes(size: Sizes) {
         case "5xl":
             return "text-5xl p-3";
         case "6xl":
-            return "text-6xl p-3";
+            return "text-6xl p-4";
         case "7xl":
             return "text-7xl p-4";
         case "8xl":
-            return "text-8xl p-4";
+            return "text-8xl p-5";
         case "9xl":
-            return "text-9xl p-4";
+            return "text-9xl p-7";
         default:
-            return "text-base";
+            return "text-base py-2 px-3";
     }
 };

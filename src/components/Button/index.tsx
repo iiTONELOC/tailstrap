@@ -8,6 +8,8 @@ import { ButtonVariantClassNames, ButtonSizeClassNames } from '../../utils/Defau
 export interface ButtonProps extends DefaultProps {
   size?: Sizes;
   label?: string;
+  rounded?: string;
+  background?: string;
   variant?: ColorVariants;
   type?: 'button' | 'submit' | 'reset';
 }
@@ -16,20 +18,22 @@ export interface ButtonProps extends DefaultProps {
 export default function Button({
   props,
   label,
+  rounded,
   children,
   className,
-  size = 'lg',
+  background,
+  size,
   type = 'button',
   override = false,
-  variant = 'default',
+  variant,
 }: ButtonProps):
   JSX.Element {
-  const defaultClass = `rounded-lg ${ButtonVariantClassNames(variant)} 
-  focus:outline-none focus:shadow-outline ${ButtonSizeClassNames(size)}`
+  const defaultClass = `${rounded ? rounded : "rounded-lg"} focus:outline-none focus:shadow-outline 
+  ${ButtonSizeClassNames(size)} ${variant ? ButtonVariantClassNames(variant) : background} `
   const renAnchor = renderAnchor(props);
   return (
     <GenerateTag
-      tag={renAnchor ? 'a' : 'button'}
+      tag={renAnchor ? 'a' : props?.as ? props.as : 'button'}
       className={generateClassNames({
         nativeArgs: defaultClass,
         userArgs: className,

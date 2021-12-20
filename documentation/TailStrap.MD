@@ -20,8 +20,12 @@ Make sure you have React.js and TailwindCSS installed prior to installation
 
 ## Table of Contents
 
+- [Box](./Components/Box.MD)
 - [Button](./Components/Button.MD)
 - [DropButton](./Components/DropButton.MD)
+- [Label](./Components/Label.MD)
+- [Nav.Bar](./Components/Nav.Bar.MD)
+- [Nav.Item](./Components/Nav.Item.MD)
 - [Page](./Layout/Page.MD)
 
 ## License

@@ -5,14 +5,18 @@ _[Back](../TailStrap.MD)_
 
 ## Default Behavior
 
-The make up of the `<DropButton />` component changes slightly upon its use but it is a TailStrap `<Button/>` component at its core.  
-The default mark-up is an HTML `<button>` element that drops an unordered list `<ul>`; with children the `<DropButton/>` drops a `<div>`. The dropped elements are the same width as the `<Button />` by default.
-`<DropButton/>` provides the [`<Button/>` component's defaults for quick prototyping.](./Button.MD)  
-Like all of our components, `<DropButton/>` can be built on top of or stripped down and fully customized.
+The make up of the component changes slightly upon its use but it is a TailStrap `<Button/>` component at its core.  
+The default mark-up is an HTML `<button>` element that drops an unordered list `<ul>`.  
+When passing children, we drop a `<div>` instead.  
+The dropped element is the same width as the `<Button />` by default but can be overridden.  
+`<DropButton/>` provides all of the [`<Button/>` component's sizes and variants for quick prototyping.](./Button.MD)
 
 Default Drop Classes:  
- For the `<ul>` the default classes are : `bg-gray-300 absolute mt-2 rounded-md shadow-lg gap-2 z-50`  
- When passing children the classes for the `<div>` are: `flex flex-col items-center bg-gray-300 absolute mt-2 rounded-md shadow-lg gap-2 z-50 p-1 hover:shadow-xl`
+ For the `<ul>` the default classes are:  
+ `bg-gray-300 absolute mt-2 rounded-md shadow-lg gap-2 z-50`
+
+For the `<div>` the default classes are:  
+ `flex flex-col items-center bg-gray-300 absolute mt-2 rounded-md shadow-lg gap-2 z-50 p-1 hover:shadow-xl`
 
 ## Import
 
@@ -21,8 +25,6 @@ import { DropButton } from "tailstrap";
 ```
 
 ## Component Properties
-
-_NOTE: Some `<Button/>` properties apply to `<DropButton/>`, the below list is the all inclusive list of the component's properties_
 
 ### **_`props`_**: object
 
@@ -127,7 +129,7 @@ _\* **Note**: If Children are present, they get passed to the drop `<div>` and n
 
 ### **_`dropItems`_**: Array of Objects
 
-The dropItem prop can take all the the props for the `<DropButtonItem/>` Component. Which is an internal component used by `<DropButton/>` that you have full control over and is returned when you pass an array to the dropItems property.
+The dropItem prop can take all the the props for the `<DropButtonItem/>` Component. Which is an internal component used by `<DropButton/>` that you have full control over and is returned only when utilizing the dropItems property.
 
 - name: string
   - Text to be displayed in the unordered list
@@ -198,7 +200,7 @@ Default behavior is to concatenate the class names passed to the _`className`_ p
 To override the default behavior pass the _`override={true}`_ property when calling the component:
 
 1. Add to base styles:  
-   same example from above except we want a larger button and the drop items centered
+    same example from above except we want a larger button and the drop items centered
 
    ```js
    export default function MyComponent() {
@@ -218,42 +220,54 @@ To override the default behavior pass the _`override={true}`_ property when call
 
    There are additional props that allow certain customization without overriding the component completely.
 
-   ### **_`dropListClassName`_**: string
+   **_`dropListClassName`_**: string
 
-   _NOTE: Use when utilizing the dropItems property_
+   _Use when utilizing the dropItems property_
 
    Applies styles to the `<ul>`.
 
-   ### **_`dropItemClassName`_**: string
+   **_`dropItemClassName`_**: string
 
-   _NOTE: Use when utilizing the dropItems property_
+   _Use when utilizing the dropItems property_
 
    Applies styles to all the `<li>` in the drop.
 
-   ### **_`dropContainerClassName`_**: string
+   **_`dropContainerClassName`_**: string
 
-   _NOTE: Use when passing children_
+   _Use when passing children_
 
    Applies styles to the `<div>`.
+
+   **_`dropElWidth`_**: string
+
+   _NOTE:_  
+    _The dropped container is centered with the button and not on the button._
+
+   _Overriding the default width and its behavior should only be done when absolutely necessary._
+
+   - dynamic
+     - sets the drop elements minWidth to the width of the button
+   - auto
+     - removes CSS width or minWidth properties
 
 2. Override completely
 
    _Note:_ _when overriding default classes the size prop is removed as well_  
     _`className`_ is required or the component defaults
 
-   ### **_`dropListOverride`_**: boolean
+   **_`dropListOverride`_**: boolean
 
-   _NOTE: Use when utilizing the dropItems property_
+   _Use when utilizing the dropItems property_
 
-   ### **_`dropItemOverride`_**: boolean
+   **_`dropItemOverride`_**: boolean
 
-   _NOTE: Use when utilizing the dropItems property_
+   _Use when utilizing the dropItems property_
 
    Removes base styles from all the `<li>` in the drop.
 
-   ### **_`dropContainerOverride`_**: boolean
+   **_`dropContainerOverride`_**: boolean
 
-   _NOTE: Use when passing children_
+   _Use when passing children_
 
    Removes base styles from the `<div>`.
 
