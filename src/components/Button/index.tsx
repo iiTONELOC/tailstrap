@@ -9,6 +9,8 @@ export interface ButtonProps extends DefaultProps {
   size?: Sizes;
   label?: string;
   rounded?: string;
+  textColor?: string;
+  textHover?: string;
   background?: string;
   variant?: ColorVariants;
   type?: 'button' | 'submit' | 'reset';
@@ -21,6 +23,8 @@ export default function Button({
   rounded,
   children,
   className,
+  textColor,
+  textHover,
   background,
   size,
   type = 'button',
@@ -29,7 +33,8 @@ export default function Button({
 }: ButtonProps):
   JSX.Element {
   const defaultClass = `${rounded ? rounded : "rounded-lg"} focus:outline-none focus:shadow-outline 
-  ${ButtonSizeClassNames(size)} ${variant ? ButtonVariantClassNames(variant) : background} `
+  ${ButtonSizeClassNames(size)} ${variant ? ButtonVariantClassNames(variant, textColor, textHover) :
+      `${background} ${textColor ? textColor : "text-white"} ${textHover}`} max-w-max`
   const renAnchor = renderAnchor(props);
   return (
     <GenerateTag
