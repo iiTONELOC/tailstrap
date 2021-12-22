@@ -2,21 +2,27 @@ import { Sizes } from "../../../types";
 
 
 export default function fontSizes(size: Sizes) {
-    if (size) {
-        const number = size?.charAt(0) || "";
-        if (typeof parseInt(number) === 'number') {
-            const token = "_" + size;
-            // @ts-ignore
-            return `${fontSizeData[token]}`
-        } else {
-            // @ts-ignore
-            return `${fontSizeData[size]}`
-        }
+
+    const n = size?.charAt(0) || "";
+    if (
+        n === "1"
+        || n === "2"
+        || n === "3"
+        || n === "4"
+        || n === "5"
+        || n === "6"
+        || n === "7"
+        || n === "8"
+        || n === "9"
+    ) {
+        // @ts-ignore
+        return `${fontSizeData["_" + size]}`
+    } else if (size) {
+        // @ts-ignore
+        return `${fontSizeData[size]}`
     } else {
         return `${fontSizeData['default']}`
     }
-
-
 };
 
 const fontSizeData = {

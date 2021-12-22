@@ -1,20 +1,27 @@
 import { ColorVariants as Variants } from "../../../types";
+import { variantData } from '../Color';
 
-export default function badgeVariants(variant: Variants) {
-    switch (variant) {
-        case "success":
-            return "bg-green-500 text-white";
-        case "danger":
-            return "bg-red-600 text-white";
-        case "warning":
-            return "bg-yellow-400 text-black";
-        case "info":
-            return "bg-blue-400 text-white";
-        case "light":
-            return "bg-gray-200 text-black";
-        case "dark":
-            return "bg-gray-900 text-white";
-        default:
-            return "bg-blue-600 text-white";
-    };
+function returnVariantBg(variant: string): string {
+    // @ts-ignore
+    return `${variantData[variant].bg}`;
+};
+function returnOutline(variant: string): string {
+    // @ts-ignore
+    return `${variantData[variant].border.thickness} ${variantData[variant].border.color}`;
+}
+export default function LabelVariants(variant: Variants, textColor?: string) {
+
+    if (variant !== undefined) {
+        if (variant === 'warning' || variant === 'light') {
+            return `${returnVariantBg(variant)} ${textColor || "text-black"}`;
+        } else if (variant.includes('-')) {
+            const thisVariant = variant.split('-')[0];
+            // @ts-ignore
+            return `${returnOutline(thisVariant)} ${textColor || variantData[thisVariant].text}`;
+        } else if (variant) {
+            console.log(variant)
+            return `${returnVariantBg(variant === 'outline' ? 'default' : variant)} ${textColor || "text-white"}`;
+        }
+    }
+
 };
