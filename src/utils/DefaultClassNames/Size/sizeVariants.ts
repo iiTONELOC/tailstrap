@@ -3,17 +3,17 @@ import { Sizes } from "../../../types";
 
 export default function fontSizes(size: Sizes) {
 
-    const n = size?.charAt(0) || "";
+    const firstChar = size?.charAt(0) || "";
+    const nextChar = size?.charAt(1) || "";
     if (
-        n === "1"
-        || n === "2"
-        || n === "3"
-        || n === "4"
-        || n === "5"
-        || n === "6"
-        || n === "7"
-        || n === "8"
-        || n === "9"
+        firstChar === "2" && nextChar === "x"
+        || firstChar === "3" && nextChar === "x"
+        || firstChar === "4" && nextChar === "x"
+        || firstChar === "5" && nextChar === "x"
+        || firstChar === "6" && nextChar === "x"
+        || firstChar === "7" && nextChar === "x"
+        || firstChar === "8" && nextChar === "x"
+        || firstChar === "9" && nextChar === "x"
     ) {
         // @ts-ignore
         return `${fontSizeData["_" + size]}`

@@ -1,11 +1,11 @@
-
+import { ButtonProps } from '../Button';
 import { fontSizes } from '../../utils/DefaultClassNames/Size';
 import { overrideClassNames, GenerateTag, renderAnchor } from '../../utils';
 import { LabelVariantClassNames, LabelSizeClassNames } from '../../utils/DefaultClassNames';
 
-import { ButtonProps } from '../Button';
 export interface LabelProps extends ButtonProps {
-}
+};
+
 export default function Label({
     size,
     props,
@@ -20,10 +20,9 @@ export default function Label({
     override = false,
 }: LabelProps): JSX.Element {
     const defaultClass = `flex flex-row justify-center items-center 
-    ${rounded ? rounded : "rounded-full"} text-center max-w-max 
-    ${padding ? `${padding} ${fontSizes(size)}` : `${LabelSizeClassNames(size)}`}
-    ${variant ? LabelVariantClassNames(variant, textColor) :
-            `${background} ${textColor ? textColor : "text-white"}`}`;
+    ${rounded || "rounded-full"} text-center max-w-max 
+    ${padding ? `${padding} ${fontSizes(size)}` : `${LabelSizeClassNames(size)}`} 
+    ${variant ? LabelVariantClassNames(variant, textColor) : `${background || ""} ${textColor || "text-white"}`}`;
     return (
         <GenerateTag
             tag={renderAnchor(props) ? 'a' : props?.as ? props.as : 'span'}

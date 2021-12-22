@@ -10,7 +10,6 @@ function returnOutline(variant: string): string {
     return `${variantData[variant].border.thickness} ${variantData[variant].border.color}`;
 }
 export default function LabelVariants(variant: Variants, textColor?: string) {
-
     if (variant !== undefined) {
         if (variant === 'warning' || variant === 'light') {
             return `${returnVariantBg(variant)} ${textColor || "text-black"}`;
@@ -19,9 +18,7 @@ export default function LabelVariants(variant: Variants, textColor?: string) {
             // @ts-ignore
             return `${returnOutline(thisVariant)} ${textColor || variantData[thisVariant].text}`;
         } else if (variant) {
-            console.log(variant)
             return `${returnVariantBg(variant === 'outline' ? 'default' : variant)} ${textColor || "text-white"}`;
-        }
-    }
-
+        };
+    };
 };

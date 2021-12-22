@@ -1,8 +1,9 @@
 import { Sizes, ColorVariants } from '../../types';
 import { DefaultProps } from '../../types/defaultProps';
+import { fontSizes } from '../../utils/DefaultClassNames/Size';
 import { overrideClassNames, GenerateTag, renderAnchor } from '../../utils';
 import { ButtonVariantClassNames, ButtonSizeClassNames } from '../../utils/DefaultClassNames';
-import { fontSizes } from '../../utils/DefaultClassNames/Size';
+
 
 
 export interface ButtonProps extends DefaultProps {
@@ -15,8 +16,7 @@ export interface ButtonProps extends DefaultProps {
   background?: string;
   variant?: ColorVariants;
   type?: 'button' | 'submit' | 'reset';
-}
-
+};
 
 export default function Button({
   size,
@@ -31,14 +31,13 @@ export default function Button({
   textHover,
   background,
   type = 'button',
-  override = false,
-
-}: ButtonProps):
-  JSX.Element {
-  const defaultClass = `${rounded ? rounded : "rounded-lg"} focus:outline-none focus:shadow-outline 
-  ${padding ? `${padding} ${fontSizes(size)}` : ButtonSizeClassNames(size)} ${variant ? ButtonVariantClassNames(variant, textColor, textHover) :
-      `${background} ${textColor ? textColor : "text-white"} `} max-w-max`
+  override = false }: ButtonProps): JSX.Element {
   const renAnchor = renderAnchor(props);
+  const defaultClass = `${rounded || "rounded-lg"} focus:outline-none focus:shadow-outline 
+  ${padding ? `${padding} ${fontSizes(size)}` : ButtonSizeClassNames(size)}
+  ${variant ? ButtonVariantClassNames(variant, textColor, textHover) : `${background || ""} 
+  ${textColor || "text-white"} `} max-w-max`;
+
   return (
     <GenerateTag
       tag={renAnchor ? 'a' : props?.as ? props.as : 'button'}

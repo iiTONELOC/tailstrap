@@ -2,7 +2,7 @@ import { Sizes } from "../../../types";
 import { fontSizes } from "../Size";
 
 
-export default function badgeSizes(size: Sizes) {
+export default function labelSizes(size: Sizes) {
     switch (size) {
         case 'xs':
             return `${fontSizes(size)} px-2`;
@@ -32,5 +32,5 @@ export default function badgeSizes(size: Sizes) {
             return `${fontSizes(size)} pt-1 pb-7 px-14`;
         default:
             return `${fontSizes('md')} px-3`;
-    }
+    };
 };
