@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { PageVariants } from '../../types';
-import { generateClassNames, GenerateTag } from '../../utils';
+import { overrideClassNames, GenerateTag } from '../../utils';
 import { PageClassNames } from '../../utils/DefaultClassNames';
 
 export interface Props {
@@ -23,7 +23,7 @@ export default function Page({
     <GenerateTag
       // @ts-ignore
       tag={props?.as || 'main'}
-      className={generateClassNames({
+      className={overrideClassNames({
         nativeArgs: defaultClass,
         userArgs: className,
         override

@@ -1,6 +1,6 @@
 
 import { fontSizes } from '../../utils/DefaultClassNames/Size';
-import { generateClassNames, GenerateTag, renderAnchor } from '../../utils';
+import { overrideClassNames, GenerateTag, renderAnchor } from '../../utils';
 import { LabelVariantClassNames, LabelSizeClassNames } from '../../utils/DefaultClassNames';
 
 import { ButtonProps } from '../Button';
@@ -27,7 +27,7 @@ export default function Label({
     return (
         <GenerateTag
             tag={renderAnchor(props) ? 'a' : props?.as ? props.as : 'span'}
-            className={generateClassNames({
+            className={overrideClassNames({
                 nativeArgs: defaultClass,
                 userArgs: className,
                 override

@@ -2,7 +2,7 @@ import Box from "../Box";
 import { useEffect, useState } from "react";
 import Button, { ButtonProps } from "../Button";
 import DropItem, { DropButtonItemProps } from "./DropButton.item";
-import { generateClassNames } from "../../utils";
+import { overrideClassNames } from "../../utils";
 
 export interface DropButtonProps extends ButtonProps {
     dropItems?: Array<DropButtonItemProps>;
@@ -94,7 +94,7 @@ export default function DropButton({
                 {isOpen && dropWidth !== 0 && (
                     children ? (
                         <div
-                            className={generateClassNames({
+                            className={overrideClassNames({
                                 override: dropContainerOverride,
                                 nativeArgs: defaultContainerClasses,
                                 userArgs: "absolute " + dropContainerClassName,
@@ -106,7 +106,7 @@ export default function DropButton({
                     )
                         : (
                             <ul
-                                className={generateClassNames({
+                                className={overrideClassNames({
                                     override: dropListOverride,
                                     nativeArgs: defaultListClasses,
                                     userArgs: "absolute " + dropListClassName,

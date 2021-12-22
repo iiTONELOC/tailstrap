@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { DefaultProps } from '../../../types/defaultProps';
-import { generateClassNames, GenerateTag } from '../../../utils';
+import { overrideClassNames, GenerateTag } from '../../../utils';
 
 export interface ItemProps extends DefaultProps {
     name?: string;
@@ -41,7 +41,7 @@ export default function Item({
 
     return (
         <li
-            className={generateClassNames({
+            className={overrideClassNames({
                 nativeArgs: liDefaultClassNames,
                 override
             })}
@@ -50,7 +50,7 @@ export default function Item({
                 name || typeof children == 'string' ? (
                     <GenerateTag
                         tag="a"
-                        className={generateClassNames({
+                        className={overrideClassNames({
                             nativeArgs: defaultAnchorClassNames,
                             userArgs: className,
                             override

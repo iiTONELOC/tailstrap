@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { generateClassNames } from "../../utils";
+import { overrideClassNames } from "../../utils";
 
 
 export interface DropButtonItemProps {
@@ -21,7 +21,7 @@ export default function DropButtonItem({
     const itemProps = props ? [...Object.keys(props)].filter(key => key !== 'href') : {};
     return (
         <li
-            className={generateClassNames({
+            className={overrideClassNames({
                 nativeArgs: defaultItemClassNames,
                 userArgs: className,
                 override: override,

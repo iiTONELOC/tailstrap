@@ -1,6 +1,6 @@
 import { BoxVariants } from '../../types';
 import { DefaultProps } from '../../types/defaultProps';
-import { generateClassNames, GenerateTag } from '../../utils';
+import { overrideClassNames, GenerateTag } from '../../utils';
 import { BoxClassNames } from '../../utils/DefaultClassNames';
 
 export interface BoxProps extends DefaultProps {
@@ -21,7 +21,7 @@ export default function Box({
         <GenerateTag
             // @ts-ignore
             tag={props?.as || 'div'}
-            className={generateClassNames({
+            className={overrideClassNames({
                 nativeArgs: defaultClassNames,
                 userArgs: className,
                 override

@@ -1,5 +1,3 @@
-import { ColorVariants } from "../../../types";
-
 const variantData = {
     default: {
         bg: "bg-blue-600",
@@ -94,7 +92,4 @@ const variantData = {
     },
 };
 
-
-
-export default variantData
-
+export default variantData;

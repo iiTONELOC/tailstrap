@@ -4,7 +4,7 @@ interface classData {
     override?: boolean;
 };
 
-export default function generateClassNames(classData: classData) {
+export default function overrideClassNames(classData: classData) {
     let userArgs = classData.userArgs;
     if (userArgs === undefined) userArgs = '';
     if (classData.override === undefined || !classData.override) {

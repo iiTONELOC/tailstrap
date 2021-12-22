@@ -1,6 +1,6 @@
 import { Sizes, ColorVariants } from '../../types';
 import { DefaultProps } from '../../types/defaultProps';
-import { generateClassNames, GenerateTag, renderAnchor } from '../../utils';
+import { overrideClassNames, GenerateTag, renderAnchor } from '../../utils';
 import { ButtonVariantClassNames, ButtonSizeClassNames } from '../../utils/DefaultClassNames';
 import { fontSizes } from '../../utils/DefaultClassNames/Size';
 
@@ -42,7 +42,7 @@ export default function Button({
   return (
     <GenerateTag
       tag={renAnchor ? 'a' : props?.as ? props.as : 'button'}
-      className={generateClassNames({
+      className={overrideClassNames({
         nativeArgs: defaultClass,
         userArgs: className,
         override
