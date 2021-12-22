@@ -25,6 +25,13 @@ Takes any valid React or HTML prop and passes to the base element
  _Note:_ _when passing href, the `<button>` element becomes an HTML `<a>` tag_  
  _`target` and `rel` attributes default to `'_blank'` and `'noopener noreferrer'` but can be overridden by passing your own_
 
+- **_`as`_**: string  
+   Any valid HTML element
+
+  ```js
+  <Button props={{ as: "div" }} />
+  ```
+
 ### **_`type`_**: string
 
 default: button
@@ -43,7 +50,7 @@ Text to be rendered if not passing children
 Change the default rounded styles without having to override the component.  
 Utilizes tailwindcss rounded classes:
 
-[Tailwind CSS Docs](https://tailwindcss.com/docs/border-radius#rounded-corners)
+[Border Radius Tailwind CSS Docs](https://tailwindcss.com/docs/border-radius#rounded-corners)
 
 ```js
 <Button label="Click me, I am a button!" rounded="rounded-xl" />
@@ -51,14 +58,51 @@ Utilizes tailwindcss rounded classes:
 
 ### **_`background`_**: string
 
-Add your own background color without overriding the component.
+Add your own background color without overriding the component.  
+Custom backgrounds will not appear if the prop `variant` is present.
 
 Utilizes tailwindcss background color properties:
 
-[Tailwind CSS Docs](https://tailwindcss.com/docs/background-color)
+[Background Colors Tailwind CSS Docs](https://tailwindcss.com/docs/background-color)
 
 ```js
 <Button label="Click me, I am a button!" background="bg-teal-500" />
+```
+
+### **_`padding`_**: string
+
+Add custom padding without overriding the component.
+
+Utilizes tailwindcss padding properties:
+
+[Padding Tailwind CSS Docs](https://tailwindcss.com/docs/padding)
+
+```js
+<Button label="Click me, I am a button!" padding="px-5 pt-1 pb-3" />
+```
+
+### **_`textColor`_**: string
+
+Change the color of the text without overriding the component.
+
+Utilizes tailwindcss text-color properties:
+
+[Text Color Tailwind CSS Docs](https://tailwindcss.com/docs/text-color)
+
+```js
+<Button label="Click me, I am a button!" textColor="text-orange-500" />
+```
+
+### **_`textHover`_**: string
+
+Change the color of the text on hover without overriding the component.
+
+Utilizes tailwindcss text-color properties:
+
+[Text Color Tailwind CSS Docs](https://tailwindcss.com/docs/text-color)
+
+```js
+<Button label="Click me, I am a button!" textHover="hover:text-orange-500" />
 ```
 
 ### **_`size`_**: string
@@ -143,6 +187,66 @@ Utilizes tailwindcss background color properties:
 _**Adds to existing styles unless overridden**_  
  Any valid TailwindCSS class  
 In Most Cases the default classes will have to be overridden for custom buttons
+
+## _`example`_
+
+```js
+import { Box, Button, Page } from "tailstrap";
+const variants = [
+  "success",
+  "danger",
+  "warning",
+  "info",
+  "light",
+  "dark",
+  "default",
+  "success-outline",
+  "danger-outline",
+  "warning-outline",
+  "info-outline",
+  "light-outline",
+  "dark-outline",
+  "outline",
+];
+
+const sizes = [
+  "xs",
+  "sm",
+  "md",
+  "lg",
+  "xl",
+  "2xl",
+  "3xl",
+  "4xl",
+  "5xl",
+  "6xl",
+  "7xl",
+  "8xl",
+  "9xl",
+];
+export default function ButtonPage() {
+  return (
+    <Page variant="center" className="gap-3">
+      <h1 className="text-6xl text-indigo-600">Buttons</h1>
+      <Box
+        variant="row"
+        className=" gap-8 p-4 bg-gray-600 w-full h-full justify-center items-center"
+      >
+        {variants.map((button, index) => (
+          <Button
+            key={index}
+            label={button}
+            variant={button}
+            // textColor='text-indigo-900'
+            // size={sizes[index] || "9xl"}
+            // textHover='hover:text-emerald-500'
+          />
+        ))}
+      </Box>
+    </Page>
+  );
+}
+```
 
 ### **_`override`_**: boolean
 

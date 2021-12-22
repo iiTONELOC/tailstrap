@@ -5,12 +5,17 @@
 ## Introduction
 
 Tired of implementing boilerplate for buttons, tool-tips, modals, and toasts,
-TailStrap aims to fill the gap in a reuseable component library for TailwindCSS + React.js.  
+TailStrap aims to fill the gap in a reuseable component library plugin for TailwindCSS + React.js.  
 TailStrap aims to be as light as possible and is designed to be integrated into your existing React + TailwindCSS projects
 
 ## Requirements
 
-Make sure you have React.js and TailwindCSS installed prior to installation
+Make sure you have React.js and TailwindCSS installed prior to installation.
+
+## Backward Compatibility
+
+TailStrap was built using Tailwindcss 3.0.1 and should have no issues using v2 or later.  
+In an effort to be as backward compatible as possible, none of our default classNames utilize changes in v3. TailStrap has been tested on v2.2.19 and 3.0.1
 
 ## Installation
 

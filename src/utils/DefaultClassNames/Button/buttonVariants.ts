@@ -1,34 +1,39 @@
 import { ColorVariants as Variants } from "../../../types";
+import { variantData } from "../Color";
 
-export default function buttonVariants(variant: Variants) {
-    switch (variant) {
-        case "success":
-            return "bg-green-500 hover:bg-green-700 text-white";
-        case "danger":
-            return "bg-red-600 hover:bg-red-700 text-white";
-        case "warning":
-            return "bg-yellow-400 hover:bg-yellow-500 text-black";
-        case "info":
-            return "bg-blue-400 hover:bg-blue-500 text-white";
-        case "light":
-            return "bg-gray-200 hover:bg-gray-400 text-black";
-        case "dark":
-            return "bg-gray-900 hover:bg-gray-800 text-white";
-        case "success-outline":
-            return "border-2 border-green-500 hover:border-green-700 text-green-500 hover:text-white  hover:bg-green-500";
-        case "danger-outline":
-            return "border-2 border-red-600 hover:border-red-700 text-red-500 hover:text-white hover:bg-red-500";
-        case "warning-outline":
-            return "border-2 border-yellow-400 hover:border-yellow-500 text-yellow-400 hover:text-black hover:bg-yellow-400";
-        case "info-outline":
-            return "border-2 border-blue-400 hover:border-blue-500 text-blue-400 hover:text-white hover:bg-blue-400";
-        case "light-outline":
-            return "border-2 border-gray-200 hover:border-gray-400 text-gray-200 hover:text-black hover:bg-gray-100";
-        case "dark-outline":
-            return "border-2 border-gray-900 hover:border-gray-700 text-gray-900 hover:text-white hover:bg-gray-900";
-        case "outline":
-            return "border-2 border-blue-600 hover:border-blue-700 text-blue-600 hover:text-white hover:bg-blue-600";
-        default:
-            return "bg-blue-600 hover:bg-blue-700 text-white";
+
+function returnVariantBg(variant: string): string {
+    // @ts-ignore
+    const thisVariant = variantData[variant];
+    return `${thisVariant.bg} ${thisVariant.hover['bg']}`;
+};
+
+function returnOutlineBg(variant: string): string {
+    // @ts-ignore
+    const thisVariant = variantData[variant];
+    const borderProps = thisVariant.border;
+    return `${borderProps.thickness} ${borderProps.color} ${borderProps.hover} ${thisVariant.hover['bg']}`;
+};
+
+
+
+export default function buttonVariants(variant: Variants, textColor?: string, textHover?: string) {
+    if (variant !== undefined) {
+        if (variant === "success" || variant === "danger" || variant === "info" || variant === "dark") {
+            return `${returnVariantBg(variant)} ${textColor || "text-white"} ${textHover || ""}`;
+        } else if (variant === "warning" || variant === "light") {
+            return `${returnVariantBg(variant)} ${textColor || "text-black"} ${textHover || ""}`;
+        } else if (variant === 'outline') {
+            return `${returnOutlineBg("default")} ${textColor || variantData['default'].text} 
+            ${textHover || 'hover:text-white'}`;
+        } else if (variant?.includes("-")) {
+            // @ts-ignore
+            return `${returnOutlineBg(variant.split("-")[0])} ${textColor || variantData[variant.split("-")[0]].text} 
+            ${textHover || 'hover:text-white'}`;
+        } else {
+            return `${returnVariantBg('default')} ${textColor || "text-white"} ${textHover || ""}`;
+        };
     };
 };
+
+

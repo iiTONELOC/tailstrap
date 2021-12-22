@@ -49,7 +49,7 @@ import { Box } from "tailstrap";
 
   - **col**
 
-    _Default Classes_ : `flex flex-col`
+    _Default Classes_ : `flex flex-wrap flex-col`
 
     ```js
     <Box variant="col"> Children Go Here </Box>

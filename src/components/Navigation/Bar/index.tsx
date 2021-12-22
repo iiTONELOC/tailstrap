@@ -1,6 +1,6 @@
 import Item, { ItemProps } from '../Item';
 import { MenuIcon } from '@heroicons/react/solid';
-import { generateClassNames } from '../../../utils';
+import { overrideClassNames } from '../../../utils';
 import { ReactNode, useState, useEffect } from 'react';
 import { DefaultProps } from '../../../types/defaultProps';
 import { checkMobile, handleMobileClassNames, handleVariant } from '../utils';
@@ -71,7 +71,7 @@ export default function Bar({
     return (
         <nav
             id={!overrideResponsiveNav ? `__tailStrap_navBar-${navID}` : null}
-            className={generateClassNames({
+            className={overrideClassNames({
                 nativeArgs: defaultNavBarClasses,
                 userArgs: className,
                 override

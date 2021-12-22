@@ -1,5 +1,5 @@
 import { BarProps } from "./Bar";
-import { generateClassNames } from "../../utils";
+import { overrideClassNames } from "../../utils";
 
 export function checkWindowWidth(): number | undefined {
     if (typeof window !== 'undefined') {
@@ -61,7 +61,7 @@ export function handleMobileClassNames({
     show, navID, defaultClasses, userArgs, override
 }: mobileClassNameProps): void {
     // @ts-ignore
-    handleResponsiveNav(show, generateClassNames({
+    handleResponsiveNav(show, overrideClassNames({
         nativeArgs: defaultClasses,
         userArgs: userArgs,
         override

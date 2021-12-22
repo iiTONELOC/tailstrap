@@ -1,34 +1,36 @@
+import { fontSizes } from "../Size";
 import { Sizes } from "../../../types";
+
 
 export default function buttonSizes(size: Sizes) {
     switch (size) {
-        case 'xs':
-            return 'text-xs py-2 px-3'
+        case "xs":
+            return `${fontSizes(size)} py-2 px-3`
         case "sm":
-            return 'text-sm py-2 px-3'
+            return `${fontSizes(size)} py-2 px-3`
         case "md":
-            return "text-base py-2 px-3";
+            return `${fontSizes(size)} py-2 px-3`;
         case "lg":
-            return "text-lg py-2 px-3";
+            return `${fontSizes(size)} py-2 px-3`;
         case "xl":
-            return "text-xl py-2 px-3";
+            return `${fontSizes(size)} py-2 px-3`;
         case "2xl":
-            return "text-2xl py-2 px-3";
+            return `${fontSizes(size)} py-2 px-3`;
         case "3xl":
-            return "text-3xl py-2 px-3";
+            return `${fontSizes(size)} py-2 px-3`;
         case "4xl":
-            return "text-4xl p-3";
+            return `${fontSizes(size)} p-3`;
         case "5xl":
-            return "text-5xl p-3";
+            return `${fontSizes(size)} pt-3 px-3 pb-4`;
         case "6xl":
-            return "text-6xl p-4";
+            return `${fontSizes(size)} pt-4 px-4 pb-5`;
         case "7xl":
-            return "text-7xl p-4";
+            return `${fontSizes(size)} pt-4 px-4 pb-6`;
         case "8xl":
-            return "text-8xl p-5";
+            return `${fontSizes(size)} pt-5 px-5 pb-7`;
         case "9xl":
-            return "text-9xl p-7";
+            return `${fontSizes(size)} pt-7 px-7 pb-9`;
         default:
-            return "text-base py-2 px-3";
-    }
+            return `${fontSizes('md')} py-2 px-3`;
+    };
 };
