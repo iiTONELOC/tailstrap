@@ -1,29 +1,46 @@
-import {
-    useEffect,
-    useState
-} from "react";
 import ReactDOM from "react-dom";
+import { PageProps } from "../Page";
+import { useEffect, useState } from "react";
 import { useModalContext } from "../../context/ModalContext";
 import { PageClassNames } from "../../utils/DefaultClassNames";
-import { Props } from "../Page";
-export interface ModalProps extends Props {
+
+export interface ModalProps extends PageProps {
 };
 
-export default function Modal({ variant = 'center', children }: ModalProps) {
-    const { isOpen, closeModal } = useModalContext();
+export const getEl = (id: string): HTMLElement | undefined => {
+    const el = document?.getElementById(id);
+    if (el) return el;
+};
+
+export default function Modal({ variant = 'center', children }: ModalProps): JSX.Element | null {
     const [isMounted, setMounted] = useState(false);
+    const { isOpen, closeModal } = useModalContext();
+
     useEffect(() => {
         if (!isMounted) {
             setMounted(true);
         };
-    }, [isMounted]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     useEffect(() => {
-        if (isMounted) {
-            document.body.style.overflow = isOpen ? 'hidden' : 'auto';
-        };
+        document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+        if (isOpen) getEl('__tailstrap_modal-root')?.scrollIntoView();
     }, [isOpen]);
+
+    useEffect(() => {
+        let scrolled = false
+        if (!isOpen) {
+            getEl("__tailstrap-Modal-previous")?.scrollIntoView({ block: 'center' });
+            scrolled = true
+        };
+        if (scrolled) getEl("__tailstrap-Modal-previous")?.removeAttribute('id');
+    }, [isOpen]);
+
     if (!isMounted) return null;
-    function RenderModal() {
+    const portal_El = getEl('__tailstrap_modal-root');
+
+    function RenderModal(): JSX.Element {
         return (
             <div
                 onDoubleClick={closeModal}
@@ -32,14 +49,14 @@ export default function Modal({ variant = 'center', children }: ModalProps) {
             >
                 {!children ? <h1 className="p-5 bg-fuchsia-600 text-gray-300 text-center">This is a modal{' '}Double Click anywhere to close!</h1> : children}
             </div>
-        )
-    }
+        );
+    };
 
-    const portalLoc = document.getElementById('__tailstrap_modal-root');
     return (
         isOpen && isMounted ? (
             // @ts-ignore
-            ReactDOM.createPortal(<RenderModal />, portalLoc)
+            ReactDOM.createPortal(<RenderModal />, portal_El)
         ) : null
-    )
+    );
 };
+

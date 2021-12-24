@@ -3,7 +3,7 @@ import { PageVariants } from '../../types';
 import { overrideClassNames, GenerateTag } from '../../utils';
 import { PageClassNames } from '../../utils/DefaultClassNames';
 
-export interface Props {
+export interface PageProps {
   props?: object;
   className?: string;
   override?: boolean;
@@ -17,7 +17,7 @@ export default function Page({
   children,
   className,
   override = false,
-}: Props): JSX.Element {
+}: PageProps): JSX.Element {
   const defaultClass = `flex flex-col ${PageClassNames(variant)} min-h-screen min-w-min`;
   return (
     <GenerateTag
