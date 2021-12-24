@@ -38,8 +38,6 @@ export default function ModalContext({ children }: ModalProviderProps) {
     const value = { modalState, dispatchModal };
     return (
         <ModalStateContext.Provider value={value}>
-            <div id="modal-root">
-            </div>
             {children}
         </ModalStateContext.Provider>
     );
