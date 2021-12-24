@@ -3,6 +3,7 @@ import { PageProps } from "../Page";
 import { useEffect, useState } from "react";
 import { useModalContext } from "../../context/ModalContext";
 import { PageClassNames } from "../../utils/DefaultClassNames";
+import ModalComponent from "./component";
 
 export interface ModalProps extends PageProps {
 };
@@ -12,7 +13,7 @@ export const getEl = (id: string): HTMLElement | undefined => {
     if (el) return el;
 };
 
-export default function Modal({ variant = 'center', children }: ModalProps): JSX.Element | null {
+export default function Modal({ variant = 'center', children, className }: ModalProps): JSX.Element | null {
     const [isMounted, setMounted] = useState(false);
     const { isOpen, closeModal } = useModalContext();
 
@@ -41,14 +42,22 @@ export default function Modal({ variant = 'center', children }: ModalProps): JSX
     const portal_El = getEl('__tailstrap_modal-root');
 
     function RenderModal(): JSX.Element {
-        return (
-            <div
-                onDoubleClick={closeModal}
-                className={`flex flex-col ${PageClassNames(variant)} 
+
+        function ModalWrapper({ children }: any): JSX.Element {
+            return (
+                <div
+                    onDoubleClick={closeModal}
+                    className={`flex flex-col ${PageClassNames(variant)} 
                 h-screen w-screen bg-black bg-opacity-25 z-50 absolute`}
-            >
-                {!children ? <h1 className="p-5 bg-fuchsia-600 text-gray-300 text-center">This is a modal{' '}Double Click anywhere to close!</h1> : children}
-            </div>
+                >
+                    {children}
+                </div>
+            );
+        };
+        return (
+            <ModalWrapper>
+                {children ? children : <ModalComponent className={className} />}
+            </ModalWrapper>
         );
     };
 

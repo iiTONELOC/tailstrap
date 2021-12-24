@@ -1,6 +1,6 @@
 import { BarProps } from "./Bar";
 import { overrideClassNames } from "../../utils";
-import { getEl } from "../../utils";
+import { getEl } from "../Modal";
 
 export function checkWindowWidth(): number | undefined {
     if (typeof window !== 'undefined') {
