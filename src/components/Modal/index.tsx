@@ -1,11 +1,10 @@
 import ReactDOM from "react-dom";
-import { PageProps } from "../Page";
 import { useEffect, useState } from "react";
 import { useModalContext } from "../../context/ModalContext";
 import { PageClassNames } from "../../utils/DefaultClassNames";
-import ModalComponent from "./component";
+import ModalComponent, { ModalComponentProps } from "./component";
 
-export interface ModalProps extends PageProps {
+export interface ModalProps extends ModalComponentProps {
     clickOutside?: boolean;
 };
 
@@ -53,8 +52,8 @@ export default function Modal({
             return (
                 <div
                     onDoubleClick={clickOutside ? closeModal : () => { }}
-                    className={`flex flex-col ${PageClassNames(variant)} 
-                h-screen w-screen bg-black bg-opacity-25 z-10 absolute`}
+                    className={`flex flex-col ${PageClassNames(variant)} h-screen w-screen bg-black bg-opacity-25 z-10 
+                    absolute`}
                 >
                     {children}
                 </div>

@@ -56,11 +56,11 @@ export function useModalContext() {
             openModal: () => dispatchModal({ type: 'openModal' }),
             closeModal: () => dispatchModal({ type: 'closeModal' }),
             toggleModal: () => dispatchModal({ type: 'toggleModal' }),
-            clickHandler: (e: any, action: Function): void => {
+            clickHandler: (e: any, action?: Function): void => {
                 e.preventDefault();
                 e.stopPropagation();
                 e.target.setAttribute('id', "__tailstrap-Modal-previous")
-                action();
+                action ? action() : dispatchModal({ type: 'toggleModal' });
             }
         };
     };
