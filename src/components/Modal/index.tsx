@@ -6,6 +6,7 @@ import { PageClassNames } from "../../utils/DefaultClassNames";
 import ModalComponent from "./component";
 
 export interface ModalProps extends PageProps {
+    clickOutside?: boolean;
 };
 
 export const getEl = (id: string): HTMLElement | undefined => {
@@ -13,7 +14,12 @@ export const getEl = (id: string): HTMLElement | undefined => {
     if (el) return el;
 };
 
-export default function Modal({ variant = 'center', children, className }: ModalProps): JSX.Element | null {
+export default function Modal({
+    children,
+    className,
+    variant = 'center',
+    clickOutside = false,
+}: ModalProps): JSX.Element | null {
     const [isMounted, setMounted] = useState(false);
     const { isOpen, closeModal } = useModalContext();
 
@@ -46,9 +52,9 @@ export default function Modal({ variant = 'center', children, className }: Modal
         function ModalWrapper({ children }: any): JSX.Element {
             return (
                 <div
-                    onDoubleClick={closeModal}
+                    onDoubleClick={clickOutside ? closeModal : () => { }}
                     className={`flex flex-col ${PageClassNames(variant)} 
-                h-screen w-screen bg-black bg-opacity-25 z-50 absolute`}
+                h-screen w-screen bg-black bg-opacity-25 z-10 absolute`}
                 >
                     {children}
                 </div>

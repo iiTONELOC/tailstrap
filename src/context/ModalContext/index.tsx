@@ -25,11 +25,11 @@ const ModalStateContext = createContext<contextProps | undefined>(undefined);
 function modalReducer(state: State, action: Action) {
     switch (action.type) {
         case 'openModal':
-            return { ...state, isOpen: true }
+            return { isOpen: true }
         case 'closeModal':
-            return { ...state, isOpen: false }
+            return { isOpen: false }
         case 'toggleModal':
-            return { ...state, isOpen: !state.isOpen }
+            return { isOpen: !state.isOpen }
         default:
             throw new Error(`Unhandled action: ${action}`);
     };
