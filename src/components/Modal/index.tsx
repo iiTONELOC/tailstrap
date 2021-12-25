@@ -14,8 +14,22 @@ export const getEl = (id: string): HTMLElement | undefined => {
 };
 
 export default function Modal({
+    Body,
+    title,
+    focus,
+    width,
+    height,
+    Footer,
+    border,
+    padding,
+    Heading,
+    message,
     children,
+    CloseIcon,
+    textColor,
     className,
+    background,
+    transitions,
     variant = 'center',
     clickOutside = false,
 }: ModalProps): JSX.Element | null {
@@ -65,7 +79,24 @@ export default function Modal({
         };
         return (
             <ModalWrapper>
-                {children ? children : <ModalComponent className={className} />}
+                {children ? children :
+                    <ModalComponent
+                        Body={Body}
+                        title={title}
+                        width={width}
+                        focus={focus}
+                        height={height}
+                        Footer={Footer}
+                        border={border}
+                        padding={padding}
+                        message={message}
+                        Heading={Heading}
+                        textColor={textColor}
+                        className={className}
+                        CloseIcon={CloseIcon}
+                        background={background}
+                        transitions={transitions}
+                    />}
             </ModalWrapper>
         );
     };
