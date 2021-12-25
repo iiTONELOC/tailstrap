@@ -36,11 +36,15 @@ export default function Modal({
 
     useEffect(() => {
         let scrolled = false
+        let focused = false
         if (!isOpen) {
             getEl("__tailstrap-Modal-previous")?.scrollIntoView({ block: 'center' });
             scrolled = true
+            getEl("__tailstrap-Modal-previous")?.focus()
+            focused = true
+
         };
-        if (scrolled) getEl("__tailstrap-Modal-previous")?.removeAttribute('id');
+        if (scrolled && focused) getEl("__tailstrap-Modal-previous")?.removeAttribute('id');
     }, [isOpen]);
 
     if (!isMounted) return null;

@@ -1,8 +1,11 @@
 import Button from "../Button";
-import { ReactNode } from "react";
 import { PageProps } from "../Page";
 import { Sizes } from "../../types";
+import { ReactNode, useState, useEffect } from "react";
 import { useModalContext } from "../../context/ModalContext";
+
+
+
 
 type HeadingProps = {
     size?: Sizes
@@ -35,6 +38,13 @@ const defaultClasses = (): string => {
     return string
 };
 
+const tailstrapIDs = {
+    modal: '__tailstrap_modal-root',
+    modalOk: '__tailstrap_modal-ok-button',
+    modalClose: '__tailstrap_modal-close-button',
+    modalCancel: '__tailstrap_modal-cancel-button',
+};
+
 
 export default function ModalComponent({
     Body,
@@ -45,27 +55,67 @@ export default function ModalComponent({
     className,
     CloseIcon
 }: any): JSX.Element {
+    const [tabs, setTabs] = useState<NodeListOf<HTMLElement> | undefined>(undefined);
     const { closeModal } = useModalContext();
+    const [isMounted, setMounted] = useState(false);
     const defaultClassNames = className || defaultClasses();
-
     const modalButtons = [
         {
             label: 'OK',
             size: 'lg',
-            props: { onClick: closeModal },
+            props: { onClick: closeModal, id: tailstrapIDs.modalOk, tabIndex: 0 },
             background: 'bg-gray-500 dark:bg-gray-700 hover:bg-green-500',
+            className: 'focus:ring-2 focus:ring-blue-500 ',
         },
         {
             label: 'Cancel',
             size: 'lg',
-            props: { onClick: closeModal },
+            props: { onClick: closeModal, id: tailstrapIDs.modalClose, tabIndex: 1 },
             background: 'bg-indigo-600 dark:bg-indigo-700 hover:bg-red-500',
+            className: 'focus:ring-2 focus:ring-blue-500 ',
         }
     ];
+    // tabIndex={0} is focused when the modal mounts
+    // set initial count to 1 to to go the next button
+    let count = 1;
+    const handleTab = (e: any): void => {
+        e.preventDefault();
+        if (e.key === "Tab" && tabs) {
+            const tabLength = tabs?.length;
+            for (const [, value] of Object.entries(tabs)) {
+                if (value.tabIndex === count) value.focus();
+            };
+            if (count === tabLength - 1 || count + 1 >= tabLength) { count = 0 }
+            else { count++ };
+        } else if (e.key === 'Enter' && tabs) {
+            const active = document.activeElement;
+            if (active?.localName === 'button') {
+                closeModal();
+            }
+        } else {
+            console.log(e.key)
+        }
+    };
+
+    useEffect(() => {
+        setMounted(true);
+        setTabs(document?.querySelectorAll('[tabindex]'))
+        // @ts-ignore
+        document?.getElementById(`${tailstrapIDs.modalOk}`).focus();
+        return () => {
+            setMounted(false);
+            setTabs(undefined);
+            window.removeEventListener('keydown', () => { });
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+    useEffect(() => {
+        if (isMounted) window.addEventListener('keydown', (e) => handleTab(e));
+    }, [isMounted]);
 
     return (
         !children ? (
-            <div className={defaultClassNames} >
+            <div className={defaultClassNames} id={tailstrapIDs.modal}>
                 <header className='flex flex-row justify-center relative'>
                     <span className={Heading?.classNames || modalHeading}>
                         {
@@ -82,8 +132,8 @@ export default function ModalComponent({
                             </span>
                             :
                             <Button
-                                props={{ onClick: closeModal }}
-                                className="p-2 absolute top-0 right-0 -mt-1 -mr-2"
+                                props={{ onClick: closeModal, id: tailstrapIDs.modalClose, tabIndex: 2 }}
+                                className="absolute top-0 right-0 -mt-1 -mr-2 rounded-full focus:ring-2 focus:ring-blue-500"
                             >
                                 {/* x-circle https://heroicons.com/ */}
                                 <svg
@@ -109,7 +159,7 @@ export default function ModalComponent({
                     Footer ? Footer :
                         <footer className=" flex justify-end items-center p-2 gap-4">
                             {/* @ts-ignore */}
-                            {modalButtons.map(button => <Button key={button.label} {...button} />)}
+                            {modalButtons.map(button => <Button key={button.props.id} {...button} />)}
                         </footer>
                 }
             </div>
