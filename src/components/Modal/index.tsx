@@ -21,6 +21,7 @@ export default function Modal({
     height,
     Footer,
     border,
+    useEsc,
     padding,
     Heading,
     message,
@@ -85,6 +86,7 @@ export default function Modal({
                         title={title}
                         width={width}
                         focus={focus}
+                        useEsc={useEsc}
                         height={height}
                         Footer={Footer}
                         border={border}

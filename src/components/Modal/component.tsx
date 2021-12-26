@@ -3,11 +3,11 @@ import { PageProps } from "../Page";
 import { Sizes } from "../../types";
 import { ReactNode, useState, useEffect } from "react";
 import { useModalContext } from "../../context/ModalContext";
+import { fontSizes } from "../../utils/DefaultClassNames/Size";
 
 
 type HeadingProps = {
     size?: Sizes
-    heading?: string;
     className?: string;
     children?: ReactNode | Array<ReactNode>;
 };
@@ -22,18 +22,19 @@ export interface ModalComponentProps extends PageProps {
     width?: string;
     height?: string;
     border?: string;
+    useEsc?: boolean;
     message?: string;
     padding?: string;
     textColor?: string;
     background?: string;
     transitions?: string;
-
 };
-
 
 const tailstrapIDs = {
+    modal: '__tailstrap_modal-root',
     firstFocus: '__tailstrap_modal-ok-button',
 };
+
 const modalButtons = [
     {
         label: 'OK',
@@ -46,6 +47,7 @@ const modalButtons = [
         background: 'bg-indigo-600 dark:bg-indigo-700 hover:bg-red-500',
     }
 ];
+
 const defaultClasses = (data: object): string | void => {
 
     let string = ''
@@ -54,12 +56,14 @@ const defaultClasses = (data: object): string | void => {
     }
     return string
 };
+
 export default function ModalComponent({
     Body,
-    Footer,
     width,
     focus,
+    Footer,
     height,
+    useEsc,
     border,
     padding,
     Heading,
@@ -75,6 +79,7 @@ export default function ModalComponent({
     const { closeModal } = useModalContext();
     const [isMounted, setMounted] = useState(false);
     const [tabs, setTabs] = useState<NodeListOf<HTMLElement> | undefined>(undefined);
+
     const modalDefaults = {
         modalText: textColor || `text-black dark:text-gray-300`,
         modalBackground: background || `bg-gray-100 dark:bg-gray-800`,
@@ -83,17 +88,18 @@ export default function ModalComponent({
             `h-auto z-50 w-96 sm:w-6/12 md:w-5/12 lg:w-5/12 xl:w-3/12`
             } `,
     };
+
     const modalPadding = padding || 'p-2';
     const modalFocus = focus || "focus:ring-2 focus:ring-blue-500"
     const modalTransitions = transitions || "transition ease-in duration-300";
-    const modalHeading = Heading?.className || `flex w-full items-center place-content-center ${modalPadding} text-2xl md: text-3xl xl: text-4xl underline underline-offset-4 decoration-indigo-500 dark:decoration-green-400`;
+    const modalHeading = Heading?.className || `flex w-full items-center place-content-center text-center ${modalPadding} text-2xl md: text-3xl xl: text-4xl underline underline-offset-4 decoration-indigo-500 dark:decoration-green-400`;
     const MyButtons = modalButtons.map((button, i) => {
         return {
             ...button,
             props: {
                 tabIndex: i,
-                onClick: closeModal,
                 taildata: i,
+                onClick: closeModal,
                 id: i === 0 ? tailstrapIDs.firstFocus : undefined,
             },
             className: `${modalFocus} ${transitions || modalTransitions} `,
@@ -116,9 +122,9 @@ export default function ModalComponent({
             const active = document.activeElement;
             if (active?.localName === 'button') {
                 closeModal();
-            }
-        } else {
-            console.log(e.key)
+            };
+        } else if (e.key === 'Escape' && tabs && useEsc) {
+            closeModal();
         }
     };
 
@@ -127,32 +133,35 @@ export default function ModalComponent({
         setTabs(document?.querySelectorAll('[taildata]'))
         // @ts-ignore
         document.getElementById(`${tailstrapIDs.firstFocus}`)?.focus();
+        const modal = document.getElementById(`${tailstrapIDs.modal}`);
         return () => {
             setMounted(false);
             setTabs(undefined);
-            window.removeEventListener('keydown', () => { });
+            modal?.removeEventListener('keydown', (e) => handleTab(e));
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     useEffect(() => {
-        if (isMounted) window.addEventListener('keydown', (e) => handleTab(e));
+        const modal = document.getElementById(`${tailstrapIDs.modal}`);
+        if (isMounted && modal) modal.addEventListener('keydown', (e) => handleTab(e));
     }, [isMounted]);
 
     return (
         !children ? (
-            <div className={defaultClassNames + ' drop-shadow-xl'}>
+            <div className={defaultClassNames + ' drop-shadow-xl'} id={tailstrapIDs.modal}>
                 <header className='flex flex-row justify-center relative'>
                     <span className={modalHeading}>
                         {
                             Heading?.children ? Heading.children :
-                                <h1>
+                                <h1 className={Heading?.size ? fontSizes(Heading?.size) : ''}>
                                     {title}
                                 </h1>
                         }
                     </span>
                     {
                         CloseIcon ?
-                            <span onClick={closeModal}>
+                            // @ts-ignore
+                            <span onClick={closeModal} taildata={2} tabIndex={2}>
                                 {CloseIcon}
                             </span>
                             :
