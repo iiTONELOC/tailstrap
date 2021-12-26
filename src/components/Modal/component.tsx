@@ -9,7 +9,7 @@ type HeadingProps = {
     size?: Sizes
     heading?: string;
     className?: string;
-    children: ReactNode | Array<ReactNode>;
+    children?: ReactNode | Array<ReactNode>;
 };
 
 export interface ModalComponentProps extends PageProps {
