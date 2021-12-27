@@ -1,11 +1,11 @@
-# Modal Component
+# Modal
 
 **_A Customizable Modal_**  
 _[Back](../TailStrap.MD)_
 
 ## Default Behavior
 
-The `<Modal />` component is one of a binary pair and requires the `<ModalPortal/>` to function.
+The `<Modal />` is one of a binary pair and requires the `<ModalPortal/>` to function.
 The `ModalPortal` exposes the Modal's context and provides the methods needed to control it.  
 At the moment tailstrap supports one modal at a time. The `<ModalComponent/>` lies at it's core and can be used on it's own.
 
@@ -46,6 +46,7 @@ export const MyComponent(){
 
       ```js
       import App from "./App";
+      import React from "react";
       import ReactDOM from "react-dom";
       import { ModalPortal } from "tailstrap";
 
@@ -127,10 +128,10 @@ export const MyComponent(){
     /*
     method to handle click events
     takes (e, action) as params
-    prevents Default, stops event from bubbling
-    default returns the toggleModal Dispatch
+    prevents Default, stops the event from bubbling
+    unless an action is passed the toggleModal Dispatches
     */
-    clickHandler: (e: any, action?: Function)
+    clickHandler: (e: event, action?: Function)
   };
   ```
 
@@ -138,13 +139,12 @@ export const MyComponent(){
 
   The `clickHandler` handles opening and closing the modal by toggling the state. The clickHandler should be used so that Modal can return focus to the previous element when it closes/unmounts.
 
-  If you wish to declare the `Modal` opens or closes explicitly you can use the clickHandler in conjunction with the additional methods : openModal or closeModal.
+  If you wish to declare that the `Modal` opens or closes explicitly you can use the clickHandler in conjunction with the additional methods : openModal or closeModal.
 
   ```js
   import { Modal,  Button, useModalContext } from "tailstrap";
 
     export const MyComponent(){
-      // provided method explained later, toggles modal
       const { clickHandler, openModal } = useModalContext();
       return (
           <>
@@ -154,7 +154,6 @@ export const MyComponent(){
               // onClick: clickHandler returns toggleModal by default
               props={{ onClick: (e)=> clickHandler(e, openModal) }}
           />
-
           <Modal
               title='Hello, I am a modal!'
               message='You can not interact with the page until you close this dialog!'
@@ -164,7 +163,7 @@ export const MyComponent(){
     }
   ```
 
-## Component Properties
+## Modal Component Properties
 
 The `Modal` works differently than most of our components. Passing children/child returns only the children/child and should be used for overriding only. For instance to override the `<ModalComponent/>` returned by `<Modal/>`:
 
@@ -351,7 +350,7 @@ The `Modal` exposes additional props allowing the modal to be customized or repl
       ...
       return(
         <Modal
-          size={ MyOtherComponent }
+         Heading={ headingData }
         />
       )
     }
