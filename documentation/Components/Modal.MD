@@ -10,7 +10,7 @@ The `ModalPortal` exposes the Modal's context and provides the methods needed to
 At the moment tailstrap supports one modal at a time.
 
 The `<ModalComponent/>` lies at it's core and can be used on it's own.  
-See [ModalComponent](./ModalComponent) for more information.
+See [ModalComponent](./ModalComponent.MD) for more information.
 
 The `<ModalPortal/>` needs to be located in the Parent Component of where `useModalContext()` is called.  
 Ideally, the portal should be located at the root of your application.  

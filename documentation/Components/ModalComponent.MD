@@ -10,9 +10,9 @@ This is the component only and can be used without `useModalContext()`.
 
 You can use the `<ModalComponent>` with your own dispatches or pair it with `<ModalProvider/>` exposing the `ModalContext` to make your own implementations.
 
-See the [ModalProvider](./ModalProvider) for more information on creating your own configurations.
+See the [ModalProvider](./ModalProvider.MD) for more information on creating your own configurations.
 
-If you are looking for an all in one implementation check out the [Modal](./Modal) instead.
+If you are looking for an all in one implementation check out the [Modal](./Modal.MD) instead.
 
 ## Import
 
