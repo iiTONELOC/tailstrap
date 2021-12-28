@@ -5,32 +5,31 @@ _[Back](../TailStrap.MD)_
 
 ## Default Behavior
 
-The `<ModalProvider/>` needs to be located in the Parent Component above where `useModalContext()` is called. Ideally, the portal should be located at the root of your application. For example, its methods can not be accessed in the example below as `useModalContext` will be undefined when it is imported:
-
 _NOTE:_  
 The `ModalProvider` differs from the `ModalPortal` and exposes the context only.
 
-Using the provider allows for faster modal creation; you can use your own modals and uses the provider to expose the modals current state and provide methods for opening, closing, or toggling your modal.
+Using the provider allows for faster modal creation; you can use your own modals and use the provider to control it.
+
+The `<ModalProvider/>` needs to be located in the Parent Component above where `useModalContext()` is called.  
+Ideally, the provider should be located at the root of your application.  
+For example, its methods can not be accessed in the example below as `useModalContext` will be undefined when it is imported:
 
 ```js
 import { ModalProvider, useModalContext, Button } from "tailStrap";
 
-export const MyComponent(){
-    // throws error: "Modal must be used within a ModalProvider"
-    const { clickHandler } = useModalContext();
-    return (
-      <ModalProvider>
-        <Button
-            label='Click to open Modal'
-            props={{ onClick: clickHandler }}
-        />
-        <Modal
-            title='Hello, I am a modal!'
-            message='You can not interact with the page until you close this dialog!'
-        />
-      </ModalProvider>
-    );
-};
+function MyComponent() {
+  // throws error: "Modal must be used within a ModalProvider"
+  const { clickHandler } = useModalContext();
+  return (
+    <ModalProvider>
+      <Button label="Click to open Modal" props={{ onClick: clickHandler }} />
+      <Modal
+        title="Hello, I am a modal!"
+        message="You can not interact with the page until you close this dialog!"
+      />
+    </ModalProvider>
+  );
+}
 ```
 
 ## ContextProvider
@@ -47,21 +46,21 @@ export const MyComponent(){
 
   ```ts
   {
-    // state of the modal
-    isOpen: boolean,
-    // dispatches the openModal Action
-    openModal: Function,
-    // dispatches the closeModal Action
-    closeModal: Function,
-    // dispatches the toggleModal Action
-    toggleModal: Function,
-    /*
-    method to handle click events
-    takes (e, action) as params
-    prevents Default, stops the event from bubbling
-    unless an action is passed the toggleModal Dispatches
-    */
-    clickHandler: (e: event, action?: Function)
+   // state of the modal
+   isOpen: boolean,
+   // sets isOpen to true
+   openModal: Function,
+   // sets isOpen to false
+   closeModal: Function,
+   // sets isOpen to !isOpen
+   toggleModal: Function,
+   /*
+   method to handle click events
+   takes (e, action) as params
+   prevents Default, stops the event from bubbling
+   unless an action is passed the toggleModal Dispatches by default
+   */
+   clickHandler: (e: event, action?: Function)
   };
   ```
 
@@ -117,16 +116,13 @@ export const MyComponent(){
   ```js
   import { useModalContext } from "tailstrap";
 
-  export const MyModal(){
+  function MyModal() {
     const { openModal, closeModal, isOpen } = useModalContext();
     return (
-        <>
-        <Button
-            label='Click to open Modal'
-            props={{ onClick: openModal }}
-        />
+      <>
+        <Button label="Click to open Modal" props={{ onClick: openModal }} />
 
-        {isOpen &&(
+        {isOpen && (
           <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
             <div class="mt-3 text-center">
               <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
@@ -149,9 +145,7 @@ export const MyComponent(){
                 Successful!
               </h3>
               <div class="mt-2 px-7 py-3">
-                <p class="text-sm text-gray-500">
-                  This is my custom modal!
-                </p>
+                <p class="text-sm text-gray-500">This is my custom modal!</p>
               </div>
               <div class="items-center px-4 py-3">
                 <button
@@ -165,7 +159,7 @@ export const MyComponent(){
             </div>
           </div>
         )}
-        </>
+      </>
     );
   }
   ```

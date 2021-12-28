@@ -5,36 +5,38 @@ _[Back](../TailStrap.MD)_
 
 ## Default Behavior
 
-The `<Modal />` is one of a binary pair and requires the `<ModalPortal/>` to function.
+The `<Modal />` is one of a binary pair and requires the `<ModalPortal/>` to function.  
 The `ModalPortal` exposes the Modal's context and provides the methods needed to control it.  
-At the moment tailstrap supports one modal at a time. The `<ModalComponent/>` lies at it's core and can be used on it's own.
+At the moment tailstrap supports one modal at a time.
 
-The `<ModalPortal/>` needs to be located in the Parent Component of where `useModalContext()` is called. Ideally, the portal should be located at the root of your application. For example its methods can not be accessed in the example below as `useModalContext` will be undefined when it is imported:
+The `<ModalComponent/>` lies at it's core and can be used on it's own.  
+See [ModalComponent](./ModalComponent) for more information.
+
+The `<ModalPortal/>` needs to be located in the Parent Component of where `useModalContext()` is called.  
+Ideally, the portal should be located at the root of your application.  
+For example its methods can not be accessed in the example below as `useModalContext` will be undefined when it is imported:
 
 ```js
-import { ModalPortal, Modal, useModalContext, Button } from "tailStrap";
+import { Modal, Button, ModalPortal, useModalContext } from "tailStrap";
 
-export const MyComponent(){
-    // throws error: "Modal must be used within a ModalProvider"
-    const { clickHandler } = useModalContext();
-    return (
-      <ModalPortal>
-        <Button
-            label='Click to open Modal'
-            props={{ onClick: clickHandler }}
-        />
-        <Modal
-            title='Hello, I am a modal!'
-            message='You can not interact with the page until you close this dialog!'
-        />
-      </ModalPortal>
-    );
-};
+function MyComponent() {
+  // throws error: "Modal must be used within a ModalProvider"
+  const { clickHandler } = useModalContext();
+  return (
+    <ModalPortal>
+      <Button label="Click to open Modal" props={{ onClick: clickHandler }} />
+      <Modal
+        title="Hello, I am a modal!"
+        message="You can not interact with the page until you close this dialog!"
+      />
+    </ModalPortal>
+  );
+}
 ```
 
 ## Import & Usage
 
-- **Create Portal**:
+- **1. Create Portal**:
 
   ```js
   import { ModalPortal } from "tailstrap";
@@ -79,26 +81,22 @@ export const MyComponent(){
       export default MyApp;
       ```
 
-- **Import Modal and context**
+- **2. Import Modal and context**
 
   ```js
-  import { Modal, useModalContext, Button } from "tailstrap";
+  import { Modal, Button, useModalContext } from "tailstrap";
 
-  export const MyComponent(){
+  function MyComponent() {
     // provided method explained later, toggles modal
     const { clickHandler } = useModalContext();
     return (
-        <>
-        <Button
-            label='Click to open Modal'
-            props={{ onClick: clickHandler }}
-        />
-
+      <>
+        <Button label="Click to open Modal" props={{ onClick: clickHandler }} />
         <Modal
-            title='Hello, I am a modal!'
-            message='You can not interact with the page until you close this dialog!'
+          title="Hello, I am a modal!"
+          message="You can not interact with the page until you close this dialog!"
         />
-        </>
+      </>
     );
   }
   ```
@@ -119,17 +117,17 @@ export const MyComponent(){
   {
     // state of the modal
     isOpen: boolean,
-    // dispatches the openModal Action
+    // sets isOpen to true
     openModal: Function,
-    // dispatches the closeModal Action
+    // sets isOpen to false
     closeModal: Function,
-    // dispatches the toggleModal Action
+    // sets isOpen to !isOpen
     toggleModal: Function,
     /*
     method to handle click events
     takes (e, action) as params
     prevents Default, stops the event from bubbling
-    unless an action is passed the toggleModal Dispatches
+    unless an action is passed the toggleModal Dispatches by default
     */
     clickHandler: (e: event, action?: Function)
   };
@@ -137,30 +135,31 @@ export const MyComponent(){
 
 - ### Usage
 
-  The `clickHandler` handles opening and closing the modal by toggling the state. The clickHandler should be used so that Modal can return focus to the previous element when it closes/unmounts.
+  The `clickHandler` handles opening and closing the modal by toggling the state.  
+  The clickHandler function should be used so that `Modal` can return focus to the previous element when it unmounts.
 
   If you wish to declare that the `Modal` opens or closes explicitly you can use the clickHandler in conjunction with the additional methods : openModal or closeModal.
 
   ```js
-  import { Modal,  Button, useModalContext } from "tailstrap";
+  import { Modal, Button, useModalContext } from "tailstrap";
 
-    export const MyComponent(){
-      const { clickHandler, openModal } = useModalContext();
-      return (
-          <>
-          <Button
-              label='Click to open Modal'
-              // pass desired function openModal/closeModal
-              // onClick: clickHandler returns toggleModal by default
-              props={{ onClick: (e)=> clickHandler(e, openModal) }}
-          />
-          <Modal
-              title='Hello, I am a modal!'
-              message='You can not interact with the page until you close this dialog!'
-          />
-          </>
-      );
-    }
+  function MyComponent() {
+    const { clickHandler, openModal } = useModalContext();
+    return (
+      <>
+        <Button
+          label="Click to open Modal"
+          // pass desired function openModal/closeModal
+          // onClick: clickHandler returns toggleModal by default
+          props={{ onClick: (e) => clickHandler(e, openModal) }}
+        />
+        <Modal
+          title="Hello, I am a modal!"
+          message="You can not interact with the page until you close this dialog!"
+        />
+      </>
+    );
+  }
   ```
 
 ## Modal Component Properties
@@ -318,7 +317,7 @@ The `Modal` exposes additional props allowing the modal to be customized or repl
 
   The Heading property expects an object with the optional properties:
 
-  - size: string
+  - `size`: string
 
     | Prop    | Tailwind Class Equivalent |
     | ------- | ------------------------- |
@@ -337,10 +336,10 @@ The `Modal` exposes additional props allowing the modal to be customized or repl
     | 9xl     | text-9xl                  |
     | default | text-lg                   |
 
-  - className: string
+  - `className`: string
     - can override the defaults:
-    - `flex w-full items-center place-content-center ${padding} text-2xl md: text-3xl xl: text-4xl underline underline-offset-4 decoration-indigo-500 dark:decoration-green-400`
-  - children: HTML or React Element use to override the heading
+      - `flex w-full items-center place-content-center ${padding} text-2xl md: text-3xl xl: text-4xl underline underline-offset-4 decoration-indigo-500 dark:decoration-green-400`
+  - `children`: HTML or React Element use to override the heading
 
     ```js
     function MyComponent(){

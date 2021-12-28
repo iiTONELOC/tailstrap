@@ -135,7 +135,7 @@ function myComponent() {
       props: { href: "https://google.com" },
     },
   ];
-  export default function TestPage() {
+  function TestPage() {
     return (
       <Page variant="start-center" className="bg-gray-400">
         <Nav.Bar

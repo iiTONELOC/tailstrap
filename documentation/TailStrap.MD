@@ -15,7 +15,7 @@ Make sure you have React.js and TailwindCSS installed prior to installation.
 ## Backward Compatibility
 
 TailStrap was built using Tailwindcss 3.0.1 and should have no issues using v2 or later.  
-In an effort to be as backward compatible as possible, none of our default classNames utilize changes in v3. TailStrap has been tested on v2.2.19 and 3.0.1
+In an effort to be as backward compatible as possible, most of our default classNames do not utilize changes in v3. TailStrap has been tested on v2.2.16 and 3.0.1
 
 ## Installation
 
@@ -29,6 +29,9 @@ In an effort to be as backward compatible as possible, none of our default class
 - [Button](./Components/Button.MD)
 - [DropButton](./Components/DropButton.MD)
 - [Label](./Components/Label.MD)
+- [Modal](./Components/Modal.MD)
+- [ModalProvider](./Components/ModalProvider.MD)
+- [ModalComponent](./Components/ModalProvider.MD)
 - [Nav.Bar](./Components/Nav.Bar.MD)
 - [Nav.Item](./Components/Nav.Item.MD)
 - [Page](./Layout/Page.MD)

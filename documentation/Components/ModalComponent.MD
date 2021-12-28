@@ -5,9 +5,14 @@ _[Back](../TailStrap.MD)_
 
 ## Default Behavior
 
-The `<ModalComponent />` is the base component returned by `<Modal/>`. This is the component only and can be used without `useModalContext()`.  
-You can use the `<Modal>` component with your own dispatches or pair it with `<ModalProvider/>` exposing the `ModalContext` to make your own implementations.  
-SEE ModalProvider for more information.
+The `<ModalComponent />` is the base component returned by `<Modal/>`.  
+This is the component only and can be used without `useModalContext()`.
+
+You can use the `<ModalComponent>` with your own dispatches or pair it with `<ModalProvider/>` exposing the `ModalContext` to make your own implementations.
+
+See the [ModalProvider](./ModalProvider) for more information on creating your own configurations.
+
+If you are looking for an all in one implementation check out the [Modal](./Modal) instead.
 
 ## Import
 
@@ -17,7 +22,7 @@ import { ModalComponent } from "tailstrap";
 
 ## Properties
 
-The `ModalComponent` is the component used in our all-in-one implementation `<Modal/>`, and shares many of the same properties.
+The `ModalComponent` is the base component used in our all-in-one implementation, `<Modal/>`, and shares many of the same properties.
 
 - ### **_`title`_**: string
 

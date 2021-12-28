@@ -144,7 +144,7 @@ const dropItemData = [
     ),
   },
 ];
-export default function MyComponent() {
+function MyComponent() {
   return (
     <Page variant="center" className="bg-gray-500">
       <DropButton
@@ -189,7 +189,7 @@ To override the default behavior pass the _`override={true}`_ property when call
     same example from above except we want a larger button and the drop items centered
 
    ```js
-   export default function MyComponent() {
+   function MyComponent() {
      return (
        <Page variant="center" className="bg-gray-500">
          <DropButton
@@ -265,7 +265,7 @@ To override the default behavior pass the _`override={true}`_ property when call
      { name: "Visit Google", props: { href: "https://google.com" } },
      { child: <Button label="Click me" size="sm" /> },
    ];
-   export default function TestPage() {
+   function TestPage() {
      return (
        <Page variant="center">
          <DropButton

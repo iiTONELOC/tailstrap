@@ -205,7 +205,7 @@ const sizes = [
   "8xl",
   "9xl",
 ];
-export default function LabelPage() {
+function LabelPage() {
   return (
     <Page variant="center" className="gap-3">
       <h1 className="text-6xl text-indigo-600">Labels</h1>

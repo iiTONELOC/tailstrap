@@ -210,7 +210,7 @@ const sizes = [
   "8xl",
   "9xl",
 ];
-export default function ButtonPage() {
+function ButtonPage() {
   return (
     <Page variant="center" className="gap-3">
       <h1 className="text-6xl text-indigo-600">Buttons</h1>
