@@ -9,7 +9,7 @@ The `<Modal />` is one of a binary pair and requires the `<ModalPortal/>` to fun
 The `ModalPortal` exposes the Modal's context and provides the methods needed to control it.  
 At the moment tailstrap supports one modal at a time. The `<ModalComponent/>` lies at it's core and can be used on it's own.
 
-The `<ModalPortal/>` needs to be located in the Parent Component of where `<Modal>` is called. Ideally, the portal should be located at the root of your application. For example its methods can not be accessed in the example below as `useModalContext` will be undefined when it is imported:
+The `<ModalPortal/>` needs to be located in the Parent Component of where `useModalContext()` is called. Ideally, the portal should be located at the root of your application. For example its methods can not be accessed in the example below as `useModalContext` will be undefined when it is imported:
 
 ```js
 import { ModalPortal, Modal, useModalContext, Button } from "tailStrap";

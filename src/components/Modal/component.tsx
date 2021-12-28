@@ -2,7 +2,6 @@ import Button from "../Button";
 import { PageProps } from "../Page";
 import { Sizes } from "../../types";
 import { ReactNode, useState, useEffect } from "react";
-import { useModalContext } from "../../context/ModalContext";
 import { fontSizes } from "../../utils/DefaultClassNames/Size";
 
 
@@ -17,6 +16,7 @@ export interface ModalComponentProps extends PageProps {
     Footer?: ReactNode | Array<ReactNode>;
     Heading?: HeadingProps;
     CloseIcon?: JSX.Element;
+    closeModal?: Function;
     focus?: string;
     title?: string;
     width?: string;
@@ -71,12 +71,13 @@ export default function ModalComponent({
     CloseIcon,
     textColor,
     className,
+    closeModal,
     background,
     transitions,
     title = 'Title goes here',
     message = 'Message goes here.',
+
 }: any): JSX.Element {
-    const { closeModal } = useModalContext();
     const [isMounted, setMounted] = useState(false);
     const [tabs, setTabs] = useState<NodeListOf<HTMLElement> | undefined>(undefined);
 
@@ -108,6 +109,7 @@ export default function ModalComponent({
     const defaultClassNames = !children ? className || defaultClasses(modalDefaults) : ''
     // tabIndex={0} is focused when the modal mounts
     // set initial count to 1 to to go the next button
+
     let count = 1;
     const handleTab = (e: any): void => {
         e.preventDefault();
@@ -125,25 +127,28 @@ export default function ModalComponent({
             };
         } else if (e.key === 'Escape' && tabs && useEsc) {
             closeModal();
-        }
+        };
     };
 
     useEffect(() => {
         setMounted(true);
         setTabs(document?.querySelectorAll('[taildata]'))
         // @ts-ignore
-        document.getElementById(`${tailstrapIDs.firstFocus}`)?.focus();
-        const modal = document.getElementById(`${tailstrapIDs.modal}`);
+        if (closeModal) document.getElementById(`${tailstrapIDs.firstFocus}`)?.focus();
+
         return () => {
             setMounted(false);
             setTabs(undefined);
-            modal?.removeEventListener('keydown', (e) => handleTab(e));
+            closeModal ? document.getElementById(`${tailstrapIDs.modal}`)?.removeEventListener('keydown', (e) => handleTab(e)) : null;
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     useEffect(() => {
-        const modal = document.getElementById(`${tailstrapIDs.modal}`);
-        if (isMounted && modal) modal.addEventListener('keydown', (e) => handleTab(e));
+        if (closeModal) {
+            const modal = document.getElementById(`${tailstrapIDs.modal}`);
+            if (isMounted && modal) modal.addEventListener('keydown', (e) => handleTab(e));
+        }
+
     }, [isMounted]);
 
     return (

@@ -19,10 +19,9 @@ export default function Label({
     background,
     override = false,
 }: LabelProps): JSX.Element {
-    const defaultClass = `flex flex-row justify-center items-center 
-    ${rounded || "rounded-full"} text-center max-w-max 
-    ${padding ? `${padding} ${fontSizes(size)}` : `${LabelSizeClassNames(size)}`} 
-    ${variant ? LabelVariantClassNames(variant, textColor) : `${background || ""} ${textColor || "text-white"}`}`;
+    const defaultClass = `flex flex-row justify-center items-center ${rounded || "rounded-full"} text-center max-w-max ${padding ? `${padding} ${fontSizes(size)}` :
+        `${LabelSizeClassNames(size)}`} ${variant ? LabelVariantClassNames(variant, textColor) :
+            `${background || ""} ${textColor || "text-white"}`}`;
     return (
         <GenerateTag
             tag={renderAnchor(props) ? 'a' : props?.as ? props.as : 'span'}

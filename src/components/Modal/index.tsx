@@ -71,8 +71,7 @@ export default function Modal({
             return (
                 <div
                     onDoubleClick={clickOutside ? closeModal : () => { }}
-                    className={`flex flex-col ${PageClassNames(variant)} h-screen w-screen bg-black bg-opacity-25 z-10 
-                    absolute`}
+                    className={`flex flex-col ${PageClassNames(variant)} h-screen w-screen bg-black bg-opacity-25 z-10 absolute`}
                 >
                     {children}
                 </div>
@@ -96,6 +95,7 @@ export default function Modal({
                         textColor={textColor}
                         className={className}
                         CloseIcon={CloseIcon}
+                        closeModal={closeModal}
                         background={background}
                         transitions={transitions}
                     />}
