@@ -1,5 +1,6 @@
 import { BarProps } from "./Bar";
 import { overrideClassNames } from "../../utils";
+import { getEl } from "../Modal";
 
 export function checkWindowWidth(): number | undefined {
     if (typeof window !== 'undefined') {
@@ -26,7 +27,7 @@ export function handleResponsiveNav(
 ): string | undefined {
     if (typeof window !== 'undefined') {
         const isMobile = checkMobile();
-        const navEl = document.getElementById(`__tailStrap_navBar-${navID}`);
+        const navEl = getEl(`__tailStrap_navBar-${navID}`);
         if (isMobile) {
             if (navEl && remove === false) {
                 const { classList } = navEl;

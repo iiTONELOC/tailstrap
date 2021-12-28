@@ -33,10 +33,10 @@ export default function Button({
   type = 'button',
   override = false }: ButtonProps): JSX.Element {
   const renAnchor = renderAnchor(props);
-  const defaultClass = `${rounded || "rounded-lg"} focus:outline-none focus:shadow-outline 
-  ${padding ? `${padding} ${fontSizes(size)}` : ButtonSizeClassNames(size)}
-  ${variant ? ButtonVariantClassNames(variant, textColor, textHover) : `${background || ""} 
-  ${textColor || "text-white"} `} max-w-max`;
+
+  const defaultClass = `${rounded || "rounded-lg"} focus:outline-none focus:shadow-outline ${padding ? `${padding} ${fontSizes(size)}` :
+    ButtonSizeClassNames(size)} ${variant ? ButtonVariantClassNames(variant, textColor, textHover) :
+      `${background || ''}${textColor || "text-white"} `}max-w-max`;
 
   return (
     <GenerateTag

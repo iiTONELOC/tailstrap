@@ -55,33 +55,19 @@ _\* **Note**: If Children are present, they get passed to the drop `<div>` and n
 | Prop    | Tailwind Class Equivalent |
 | ------- | ------------------------- |
 | xs      | text-xs                   |
-|         |                           |
 | sm      | text-sm                   |
-|         |                           |
 | md      | text-base                 |
-|         |                           |
 | lg      | text-lg                   |
-|         |                           |
 | xl      | text-xl                   |
-|         |                           |
 | 2xl     | text-2xl                  |
-|         |                           |
 | 3xl     | text-3xl                  |
-|         |                           |
 | 4xl     | text-4xl                  |
-|         |                           |
 | 5xl     | text-5xl                  |
-|         |                           |
 | 6xl     | text-6xl                  |
-|         |                           |
 | 7xl     | text-7xl                  |
-|         |                           |
 | 8xl     | text-8xl                  |
-|         |                           |
 | 9xl     | text-9xl                  |
-|         |                           |
 | default | text-lg                   |
-|         |                           |
 
 ### **_`variant`_**: string
 
@@ -158,7 +144,7 @@ const dropItemData = [
     ),
   },
 ];
-export default function MyComponent() {
+function MyComponent() {
   return (
     <Page variant="center" className="bg-gray-500">
       <DropButton
@@ -203,7 +189,7 @@ To override the default behavior pass the _`override={true}`_ property when call
     same example from above except we want a larger button and the drop items centered
 
    ```js
-   export default function MyComponent() {
+   function MyComponent() {
      return (
        <Page variant="center" className="bg-gray-500">
          <DropButton
@@ -279,7 +265,7 @@ To override the default behavior pass the _`override={true}`_ property when call
      { name: "Visit Google", props: { href: "https://google.com" } },
      { child: <Button label="Click me" size="sm" /> },
    ];
-   export default function TestPage() {
+   function TestPage() {
      return (
        <Page variant="center">
          <DropButton

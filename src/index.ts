@@ -6,5 +6,8 @@ export { default as DropButton } from './components/DropDowns/DropButton'
 export { default as Label } from './components/Label'
 export { default as Nav } from './components/Navigation'
 export { default as Page } from './components/Page'
-
-
+export { default as Modal } from './components/Modal'
+export { default as ModalComponent } from './components/Modal/component'
+export { default as ModalProvider } from './context/ModalContext'
+export { useModalContext } from './context/ModalContext'
+export { default as ModalPortal } from './components/Modal/portal'
