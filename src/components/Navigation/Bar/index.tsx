@@ -1,5 +1,5 @@
 import Item, { ItemProps } from '../Item';
-import { MenuIcon } from '@heroicons/react/solid';
+import { MenuIcon } from '../../../Icons';
 import { overrideClassNames } from '../../../utils';
 import { ReactNode, useState, useEffect } from 'react';
 import { DefaultProps } from '../../../types/defaultProps';
