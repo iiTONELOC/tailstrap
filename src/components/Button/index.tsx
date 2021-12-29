@@ -36,7 +36,7 @@ export default function Button({
 
   const defaultClass = `${rounded || "rounded-lg"} focus:outline-none focus:shadow-outline ${padding ? `${padding} ${fontSizes(size)}` :
     ButtonSizeClassNames(size)} ${variant ? ButtonVariantClassNames(variant, textColor, textHover) :
-      `${background || ''}${textColor || "text-white"} `}max-w-max`;
+      `${background || ''}${textColor || "text-white"} `}min-w-max`;
 
   return (
     <GenerateTag
