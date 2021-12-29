@@ -1,8 +1,6 @@
 import { Sizes } from "../../../types";
 
-
 export default function fontSizes(size: Sizes) {
-
     const firstChar = size?.charAt(0) || "";
     const nextChar = size?.charAt(1) || "";
     if (
@@ -22,7 +20,7 @@ export default function fontSizes(size: Sizes) {
         return `${fontSizeData[size]}`
     } else {
         return `${fontSizeData['default']}`
-    }
+    };
 };
 
 const fontSizeData = {

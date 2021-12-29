@@ -1,13 +1,24 @@
 import { useState, useEffect } from "react";
+import { Sizes } from "../../types";
 import { DefaultProps } from "../../types/defaultProps";
+import { fontSizes } from "../../utils/DefaultClassNames/Size";
 
 
 export interface ToolTipProps extends DefaultProps {
     variant?: 'top' | 'bottom' | 'left' | 'right';
     marginAmount?: string;
+    background?: string;
+    textColor?: string;
+    rounded?: string;
+    padding?: string;
+    size?: Sizes;
+    tip: string;
 };
 
-function variantClassNames(variant: ToolTipProps['variant'], marginAmount: ToolTipProps['marginAmount']) {
+function variantClassNames(
+    variant: ToolTipProps['variant'],
+    marginAmount: ToolTipProps['marginAmount']
+) {
     switch (variant) {
         case 'top':
             return `${marginAmount || '-my-10'}`;
@@ -22,7 +33,13 @@ function variantClassNames(variant: ToolTipProps['variant'], marginAmount: ToolT
     }
 };
 export default function ToolTip({
+    tip,
+    size,
+    padding,
+    rounded,
     children,
+    textColor,
+    background,
     marginAmount,
     variant = 'bottom'
 }: ToolTipProps): JSX.Element | null {
@@ -33,22 +50,20 @@ export default function ToolTip({
         setIsMounted(true);
         return () => { setIsMounted(false); setHover(false); };
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, []);
+    const classNames = `absolute ${size ? fontSizes(size) :
+        `text-small`} ${rounded || 'rounded-lg'} ${padding || 'px-2 pb-1'} ${textColor ? textColor :
+            'text-white'} ${background || 'bg-black'} ${variantClassNames(variant, marginAmount)}`;
     if (!isMounted) return null;
+
     return (
-        <span className={`static flex ${variant === 'top' || variant === 'bottom' ? `flex-col` : 'flex-row'} items-center`}
+        <div className={`static flex ${variant === 'top' || variant === 'bottom' ? `flex-col`
+            : 'flex-row'} items-center`}
             onMouseOver={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
         >
             {children}
-            {
-                hover === true ?
-                    <span
-                        className={`absolute text-sm text-center text-white bg-black rounded-lg p-1 ${variantClassNames(variant, marginAmount)}`}>
-                        <p>Example Tip</p>
-                    </span>
-                    : null
-            }
-        </span>
-    )
-}
+            {hover === true ? <span className={classNames}> {tip} </span> : null}
+        </div>
+    );
+};

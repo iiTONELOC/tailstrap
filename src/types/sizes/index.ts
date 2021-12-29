@@ -14,7 +14,7 @@ type Sizes =
     | '9xl'
     | undefined;
 
-type marginNumbers =
+type tailNumbers =
     | 0
     | 0.5
     | 1
@@ -50,4 +50,4 @@ type marginNumbers =
     | 96
     | undefined;
 
-export type { Sizes, marginNumbers };
+export type { Sizes, tailNumbers };

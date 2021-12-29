@@ -35,6 +35,7 @@ In an effort to be as backward compatible as possible, most of our default class
 - [Nav.Bar](./Components/Nav.Bar.MD)
 - [Nav.Item](./Components/Nav.Item.MD)
 - [Page](./Layout/Page.MD)
+- [ToolTip](./Components/ToolTip.MD)
 
 ## License
 
