@@ -58,7 +58,7 @@ export default function ToolTip({
 
     return (
         <div className={`static flex ${variant === 'top' || variant === 'bottom' ? `flex-col`
-            : 'flex-row'} items-center`}
+            : 'flex-row'} items-center max-w-fit`}
             onMouseOver={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
         >
