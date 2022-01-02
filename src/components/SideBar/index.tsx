@@ -20,8 +20,8 @@ export default function SideBar({
     variant,
     responsive = true,
     responsiveBreakpoint,
-    textColor = 'text-black dark:text-gray-400',
-    background = "bg-gray-200 dark:bg-gray-900",
+    textColor = 'text-black dark:text-gray-300',
+    background = "bg-gray-200 dark:bg-gray-800",
 }: SideBarLayoutProps): JSX.Element | null {
     const defaultClasses = {
         section: {
@@ -29,7 +29,7 @@ export default function SideBar({
             responsiveClass: `flex flex-col md:flex-row w-screen h-screen overflow-auto ${textColor}`,
         },
         side: {
-            defaultClass: `${background} min-w-min max-w-xs min-h-screen`,
+            defaultClass: `${background} min-w-max max-w-md min-h-screen`,
             responsiveClass: `${background} md:max-w-screen-sm md:min-h-screen ${justifyContent(variant)}`,
         },
         main: {
@@ -104,10 +104,10 @@ export default function SideBar({
             if (isMobile) {
                 if (!show) {
                     return (
-                        <ToolTip
-                            tip='Click to show the sidebar'
-                        >
-                            <Button className={textColor + ' hover:text-blue-400 dark:hover:text-green-400'} props={{ onClick: () => setIsMobile(!isMobile) }}>
+                        <ToolTip tip='Click to show the sidebar'>
+                            <Button
+                                className={textColor + ' hover:text-blue-400 dark:hover:text-green-400'}
+                                props={{ onClick: () => setIsMobile(!isMobile) }}>
                                 <MenuIcon className={'w-12 h-12'} />
                             </Button>
                         </ToolTip>
