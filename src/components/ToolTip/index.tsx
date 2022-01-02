@@ -53,7 +53,7 @@ export default function ToolTip({
     }, []);
     const classNames = `absolute ${size ? fontSizes(size) :
         `text-small`} ${rounded || 'rounded-lg'} ${padding || 'px-2 pb-1'} ${textColor ? textColor :
-            'text-white'} ${background || 'bg-black'} ${variantClassNames(variant, marginAmount)}`;
+            'text-white'} ${background || 'bg-gray-700 dark:bg-black'} ${variantClassNames(variant, marginAmount)}`;
     if (!isMounted) return null;
 
     return (

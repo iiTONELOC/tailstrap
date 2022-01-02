@@ -29,8 +29,8 @@ export default function SideBar({
             responsiveClass: `flex flex-col md:flex-row w-screen h-screen overflow-auto ${textColor}`,
         },
         side: {
-            defaultClass: `${background} min-w-max max-w-md min-h-screen`,
-            responsiveClass: `${background} md:max-w-screen-sm md:min-h-screen ${justifyContent(variant)}`,
+            defaultClass: `${background} min-w-max max-w-md min-h-screen }`,
+            responsiveClass: `${background} md:max-w-screen-sm md:min-h-screen }`,
         },
         main: {
             defaultClass: "bg-white dark:bg-gray-600 w-full min-h-screen p-1",
@@ -39,7 +39,7 @@ export default function SideBar({
     };
 
     // show controls the visibility of the sidebar
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(false);
     // isMobile is true when the screen is smaller than the responsiveBreakpoint
     const [isMobile, setIsMobile] = useState(false);
     const [isMounted, setMounted] = useState(false);
@@ -56,9 +56,8 @@ export default function SideBar({
         responsive ? setIsMobile(checkMobile(responsiveBreakpoint)) : null
         return () => {
             setMounted(false);
-            console.log(`Removing event listener`)
             window.addEventListener('resize', () => {
-                setShow(!checkMobile());
+                setShow(checkMobile());
                 setIsMobile(checkMobile());
             });
         }
@@ -74,9 +73,8 @@ export default function SideBar({
     // adds event listener to the window
     useEffect(() => {
         if (isMounted && responsive) {
-            console.log(`Adding event listener`)
             window.addEventListener('resize', () => {
-                setShow(!checkMobile());
+                setShow(checkMobile());
                 setIsMobile(checkMobile());
             });
         }
@@ -100,37 +98,39 @@ export default function SideBar({
     if (!isMounted) return null
 
     function responsiveLayoutHandler() {
-        if (responsive) {
+        if (responsive && isMounted) {
             if (isMobile) {
-                if (!show) {
-                    return (
-                        <ToolTip tip='Click to show the sidebar'>
-                            <Button
-                                className={textColor + ' hover:text-blue-400 dark:hover:text-green-400'}
-                                props={{ onClick: () => setIsMobile(!isMobile) }}>
-                                <MenuIcon className={'w-12 h-12'} />
-                            </Button>
-                        </ToolTip>
-
-                    );
-                } else {
-                    return <SideBarComponent items={items} showClose={true} />;
-                }
+                return (
+                    <ToolTip tip='Show sidebar' variant="right" marginAmount="mx-16">
+                        <Button
+                            className={textColor + ' hover:text-indigo-500 dark:hover:text-green-400'}
+                            props={{ onClick: () => { setIsMobile(!isMobile); setShow(!show) } }}>
+                            <MenuIcon className={'w-12 h-12'} />
+                        </Button>
+                    </ToolTip>
+                );
+            } else if (!isMobile && show) {
+                return <SideBarComponent
+                    items={items}
+                    showClose={true}
+                    mobileSetter={() => { setIsMobile(!isMobile); setShow(!show) }} variant={variant}
+                />;
             } else {
-                return <SideBarComponent items={items} />;
+                return <SideBarComponent items={items} variant={variant} />;
             }
         } else {
-            return <SideBarComponent items={items} />;
+            return <SideBarComponent items={items} variant={variant} />;
         };
     };
 
     return (
+        isMounted &&
         <section className={sectionClasses}>
             <div className={sideClasses}>
                 {responsiveLayoutHandler()}
             </div>
             <div className={mainClasses}>
-                {main}
+                {main || `Main Section goes here`}
             </div>
         </section>
     );
