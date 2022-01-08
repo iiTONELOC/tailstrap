@@ -60,7 +60,9 @@ export default function SideBarComponent({
             const updatedItems = items.map(item => {
                 const href = item?.href || undefined
                 if (href) {
-                    if (window.location.href === href || window.location.pathname === href || window.location.pathname === item.label) {
+                    if (window.location.href === href ||
+                        window.location.pathname === href ||
+                        window.location.pathname === item.label) {
                         return {
                             ...item,
                             props: {
