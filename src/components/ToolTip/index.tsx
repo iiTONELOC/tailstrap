@@ -53,12 +53,12 @@ export default function ToolTip({
     }, []);
     const classNames = `absolute ${size ? fontSizes(size) :
         `text-small`} ${rounded || 'rounded-lg'} ${padding || 'px-2 pb-1'} ${textColor ? textColor :
-            'text-white'} ${background || 'bg-black'} ${variantClassNames(variant, marginAmount)}`;
+            'text-white'} ${background || 'bg-gray-700 dark:bg-black'} ${variantClassNames(variant, marginAmount)}`;
     if (!isMounted) return null;
 
     return (
         <div className={`static flex ${variant === 'top' || variant === 'bottom' ? `flex-col`
-            : 'flex-row'} items-center`}
+            : 'flex-row'} items-center max-w-fit`}
             onMouseOver={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
         >

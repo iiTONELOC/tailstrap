@@ -1,9 +1,9 @@
 import Button from "../Button";
 import { PageProps } from "../Page";
 import { Sizes } from "../../types";
+import { CloseIcon as Close } from "../../Icons";
 import { ReactNode, useState, useEffect } from "react";
 import { fontSizes } from "../../utils/DefaultClassNames/Size";
-
 
 type HeadingProps = {
     size?: Sizes
@@ -174,18 +174,9 @@ export default function ModalComponent({
                                 props={{ onClick: closeModal, taildata: 2, tabIndex: 2 }}
                                 className={`absolute top-0 right-0 -mt-2 -mr-3 rounded-full ${modalFocus} `}
                             >
-                                {/* x-circle https://heroicons.com/ */}
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
+                                <Close
                                     className="text-gray-400 hover:text-red-600 w-8 md:text-3xl xl:text-4xl transition ease-in duration-300"
-                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path
-                                        strokeWidth={2}
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                    />
-                                </svg>
+                                />
                             </Button>
                     }
                 </header>
